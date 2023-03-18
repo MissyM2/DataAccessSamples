@@ -2,7 +2,7 @@
 
 public partial class StaticObjectsInVMPage : ContentPage
 {
-	public StaticObjectsInVMPage(StaticObjectsInVMPageViewModel vm)
+	public StaticObjectsInVMPage(StaticObjectsInVMPageVM vm)
 	{
 		InitializeComponent();
 		BindingContext = vm;

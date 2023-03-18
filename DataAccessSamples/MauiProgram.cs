@@ -31,13 +31,24 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<MainPage>();
         mauiAppBuilder.Services.AddSingleton<MainPageViewModel>();
 
-        mauiAppBuilder.Services.AddSingleton<ArrayInXamlPage>();
+        mauiAppBuilder.Services.AddSingleton<ArrayOfStringsInXamlPage>();
+
+        mauiAppBuilder.Services.AddSingleton<ArrayOfObjectsInXamlPage>();
 
         mauiAppBuilder.Services.AddSingleton<ListOfStringsInVMPage>();
-        mauiAppBuilder.Services.AddSingleton<ListOfStringsInVMPageViewModel>();
+        mauiAppBuilder.Services.AddSingleton<ListOfStringsInVMPageVM>();
 
         mauiAppBuilder.Services.AddSingleton<StaticObjectsInVMPage>();
-        mauiAppBuilder.Services.AddSingleton<StaticObjectsInVMPageViewModel>();
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsInVMPageVM>();
+
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsInSeparateFilePage>();
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsInSeparateFilePageVM>();
+
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsInJsonFilePage>();
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsInJsonFilePageVM>();
+
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsPulledFromSqliteDbPage>();
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsPulledFromSqliteDbPageVM>();
 
 
         return mauiAppBuilder;

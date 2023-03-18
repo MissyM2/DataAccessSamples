@@ -1,13 +1,13 @@
 ﻿using System;
 namespace DataAccessSamples.ViewModels
 {
-	public class ListOfStringsInVMPageViewModel : BaseViewModel
+	public class ListOfStringsInVMPageVM : BaseViewModel
     {
 
         public List<string> Fruits { get; } = new();
 
 
-        public ListOfStringsInVMPageViewModel()
+        public ListOfStringsInVMPageVM()
         {
             Fruits = CreateFruitCollection();
         }

@@ -2,7 +2,7 @@
 
 public partial class ListOfStringsInVMPage : ContentPage
 {
-	public ListOfStringsInVMPage(ListOfStringsInVMPageViewModel vm)
+	public ListOfStringsInVMPage(ListOfStringsInVMPageVM vm)
 	{
 		InitializeComponent();
 		BindingContext = vm;

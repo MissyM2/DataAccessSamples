@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace DataAccessSamples.ViewModels
 {
-    public class StaticObjectsInVMPageViewModel : BaseViewModel
+    public class StaticObjectsInVMPageVM : BaseViewModel
     {
         readonly IList<Monkey> source;
         Monkey selectedMonkey;
@@ -29,7 +29,7 @@ namespace DataAccessSamples.ViewModels
         public ICommand DeleteCommand => new Command<Monkey>(RemoveMonkey);
         public ICommand FavoriteCommand => new Command<Monkey>(FavoriteMonkey);
 
-        public StaticObjectsInVMPageViewModel()
+        public StaticObjectsInVMPageVM()
         {
             source = new List<Monkey>();
             CreateMonkeyCollection();
