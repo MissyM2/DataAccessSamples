@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataAccessSamples.Views.ArrayInXamlPage"
+             Title="ArrayInXamlPage">
+     <StackLayout Margin="0,20,0,0">
+        <ListView>
+            <ListView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Apple</x:String>
+                    <x:String>Blueberry</x:String>
+                    <x:String>Cantaloupe</x:String>
+                    <x:String>Banana</x:String>
+                    <x:String>Orange</x:String>
+                 </x:Array>
+            </ListView.ItemsSource>
+        </ListView>
+    </StackLayout>
+</ContentPage>

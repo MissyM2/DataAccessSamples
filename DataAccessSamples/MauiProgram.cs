@@ -7,7 +7,9 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
-			.ConfigureFonts(fonts =>
+            .RegisterAppServices()
+            .RegisterViewsAndViewModels()
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
@@ -15,5 +17,30 @@ public static class MauiProgram
 
 		return builder.Build();
 	}
+
+    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
+    {
+        mauiAppBuilder.Services.AddSingleton<IDialogService, DialogService>();
+
+        return mauiAppBuilder;
+    }
+
+    public static MauiAppBuilder RegisterViewsAndViewModels(this MauiAppBuilder mauiAppBuilder)
+    {
+        // PAGES AND VIEW MODELS
+        mauiAppBuilder.Services.AddSingleton<MainPage>();
+        mauiAppBuilder.Services.AddSingleton<MainPageViewModel>();
+
+        mauiAppBuilder.Services.AddSingleton<ArrayInXamlPage>();
+
+        mauiAppBuilder.Services.AddSingleton<ListOfStringsInVMPage>();
+        mauiAppBuilder.Services.AddSingleton<ListOfStringsInVMPageViewModel>();
+
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsInVMPage>();
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsInVMPageViewModel>();
+
+
+        return mauiAppBuilder;
+    }
 }
 
