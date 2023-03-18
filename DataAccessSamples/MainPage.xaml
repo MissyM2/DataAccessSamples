@@ -4,29 +4,25 @@
              x:Class="DataAccessSamples.MainPage">
 
     <StackLayout Margin="20">
-        <ListView ItemsSource="{Binding ListItems}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Selected item:" />
+            <Label x:Name="currentSelectedItemLabel"
+                   Grid.Column="1" />
+        </Grid>
+
+        <ListView ItemsSource="{Binding ListItems}"
+                  ItemSelected="ListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Grid Padding="10">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Label Grid.Column="1" 
-                                   Text="{Binding ItemName}" 
-                                   FontAttributes="Bold" />
-                            <Label Grid.Row="1"
-                                   Grid.Column="1" 
-                                   Text="{Binding ItemDesc}"
-                                   FontAttributes="Italic" 
-                                   VerticalOptions="End" />
-                        </Grid>
-                    </ViewCell>
+                         <TextCell Text="{Binding ItemName}"
+                                   Detail="{Binding ItemDesc}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

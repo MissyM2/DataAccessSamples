@@ -9,7 +9,11 @@ public partial class MainPage : ContentPage
 		BindingContext = vm;
 	}
 
-	
+    void ListView_ItemSelected(System.Object sender, Microsoft.Maui.Controls.SelectedItemChangedEventArgs e)
+    {
+		Shell.Current.DisplayAlert("ALert", e.SelectedItem.ToString(), "OK");
+    }
+
 }
 
 

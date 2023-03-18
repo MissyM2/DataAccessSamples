@@ -44,53 +44,36 @@ namespace DataAccessSamples.ViewModels
             
             source.Add(new ListItem
             {
-                ItemName = "Howler Monkey",
-                ItemDesc = "South America",
+                ItemName = "List of Strings",
+                ItemDesc = "List of strings coming from VM; no class",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "Japanese Macaque",
-                ItemDesc = "Japan",
+                ItemName = "Collection of Objects",
+                ItemDesc = "Collection of objects coming from VM; with class",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "Mandrill",
-                ItemDesc = "Southern Cameroon, Gabon, Equatorial Guinea, and Congo",
+                ItemName = "Objects from separate file",
+                ItemDesc = "Collection of objects coming from a separate class",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "Proboscis Monkey",
-                ItemDesc = "Borneo",
+                ItemName = "Json",
+                ItemDesc = "Collection of objects coming from json file",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "Red-shanked Douc",
-                ItemDesc = "Vietnam, Laos",
+                ItemName = "SQL Lite db",
+                ItemDesc = "sqlite db",
             });
-
-            source.Add(new ListItem
-            {
-                ItemName = "Gray-shanked Douc",
-                ItemDesc = "Vietnam",
-            });
-
-            source.Add(new ListItem
-            {
-                ItemName = "Golden Snub-nosed Monkey",
-                ItemDesc = "China",
-          });
-
 
             ListItems = new ObservableCollection<ListItem>(source);
         }
-
-        
-
-        
 
     }
 }
