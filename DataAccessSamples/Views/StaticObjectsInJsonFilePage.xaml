@@ -1,12 +1,122 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:DataAccessSamples.Models"
+             xmlns:viewmodels="clr-namespace:DataAccessSamples.ViewModels"
+             x:DataType="viewmodels:StaticObjectsInJsonFilePageVM"
              x:Class="DataAccessSamples.Views.StaticObjectsInJsonFilePage"
              Title="StaticObjectsInJsonFilePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="StaticObjectsInJsonFilePage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Grid RowDefinitions="175,50,auto">
+        <StackLayout>
+            <Label Text="The following is a COLLECTIONVIEW that receives its ItemsSource data from external JSON file through VM"
+                   Margin="10,5"
+                   FontSize="Micro"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"/>
+             <Label Text="Layout: COLLECTIONVIEW, by default, includes scrolling.  Do not put this inside Stacklayout or you may have an issue with scrolling.  Selection is made by SelectionMode=none and using a TapGesture Recognizer on the frame."
+                    Margin="10,5"
+                    FontSize="Micro"/>
+            <Label Text="Search:  Uses TextChanged from codebehind and search command and parameter from vm once text is finished."
+                    Margin="5,10"
+                    FontSize="Micro"/>
+        </StackLayout>
+        <SearchBar x:Name="searchBar"
+                Grid.Row="1"
+                HorizontalOptions="Fill"
+                VerticalOptions="CenterAndExpand"
+                Placeholder="Search cases..."
+                BackgroundColor="White"
+                TextChanged="searchBar_TextChanged"
+                SearchCommand="{Binding PerformSearchCommand}"
+                SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+
+            <CollectionView x:Name="StudentCasesCollectionView"
+                            Grid.Row="2"
+                            ItemsSource="{Binding SearchResults}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:StudentCase">
+                        <Frame HasShadow="false"
+                                Padding="0,0,0,0"
+                                CornerRadius="0"
+                                BorderColor="Transparent">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:StaticObjectsInJsonFilePageVM}}, Path=GoToDetailsCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
+                            <Grid RowDefinitions="150"
+                                    ColumnDefinitions="20, 3*">
+                                <StackLayout Grid.Column="1"
+                                                VerticalOptions="Center">
+
+                                    <Grid ColumnDefinitions="350,15"
+                                            RowDefinitions="Auto, 15">
+                                        <VerticalStackLayout Grid.Column="0"
+                                                                VerticalOptions="Center"
+                                                                Padding="0,10,0,0">
+                                            <Label Margin="0,5,0,5">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding SchoolID}"
+                                                              FontAttributes="Bold"
+                                                              FontSize="Small"/>
+                                                        <Span Text=" " />
+                                                        <Span Text="-" />
+                                                        <Span Text=" " />
+                                                        <Span Text="{Binding StatusCodeDescription}"
+                                                    FontSize="Small"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label Text="{Binding StudentName}"
+                                                    FontSize="Small"
+                                                    Margin="0,0,0,5"/>
+                                            <Label Margin="0,0,0,5">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span Text="{Binding Address1}"
+                                                    FontSize="Small"/>
+                                                        <Span Text="{Binding Address2}"
+                                                    FontSize="Small"/>
+                                                        <Span Text=", "
+                                                    FontSize="Small"/>
+                                                        <Span Text="{Binding City}"
+                                                    FontSize="Small"/>
+                                                        <Span Text=", " />
+                                                        <Span Text="{Binding State}"
+                                                    FontSize="Small"/>
+                                                        <Span Text="  "
+                                                    FontSize="Small"/>
+                                                        <Span Text="{Binding Zip}"
+                                                    FontSize="Small"/>
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </VerticalStackLayout>
+
+                                        <StackLayout Grid.Column="1"
+                                            Grid.Row="0"
+                                            VerticalOptions="Center">
+                                            <Label Text=">"
+                                                    TextColor="LightSlateGrey"
+                                                    FontSize="Title"/>
+
+                                        </StackLayout>
+                                        <StackLayout Grid.Column="0"
+                                                        Grid.ColumnSpan="2"
+                                                        Grid.Row="1"
+                                                        Padding="0,5,0,0">
+                                            <BoxView Color="LightGray"
+                                                        HeightRequest="2"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </StackLayout>
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+    </Grid>
 </ContentPage>

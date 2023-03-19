@@ -7,4 +7,27 @@ public partial class StaticObjectsInJsonFilePage : ContentPage
 		InitializeComponent();
 		BindingContext = vm;
 	}
+
+	protected override async void OnAppearing()
+	{
+		base.OnAppearing();
+
+		if (BindingContext is StaticObjectsInJsonFilePageVM vm)
+		{
+			await vm.InitializeAsync();
+		}
+
+			
+	}
+
+    async void searchBar_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
+    {
+        if (e.NewTextValue == "")
+        {
+            if (BindingContext is StaticObjectsInJsonFilePageVM vm)
+            {
+                await vm.PerformSearch("");
+            }
+        }
+    }
 }

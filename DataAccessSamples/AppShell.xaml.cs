@@ -20,6 +20,7 @@ public partial class AppShell : Shell
         Routes.Add(nameof(StaticObjectsInSeparateFilePage), typeof(StaticObjectsInSeparateFilePage));
         Routes.Add(nameof(StaticObjectsInJsonFilePage), typeof(StaticObjectsInJsonFilePage));
         Routes.Add(nameof(StaticObjectsPulledFromSqliteDbPage), typeof(StaticObjectsPulledFromSqliteDbPage));
+        Routes.Add(nameof(SearchDetailPage), typeof(SearchDetailPage));
 
         foreach (var item in Routes)
         {

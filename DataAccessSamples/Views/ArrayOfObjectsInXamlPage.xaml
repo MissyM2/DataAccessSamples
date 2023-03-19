@@ -5,11 +5,12 @@
              xmlns:local="clr-namespace:DataAccessSamples.Models"
              Title="ArrayOfObjectsInXamlPage">
     <StackLayout>
-        <Label Text="ListView"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
-
+         <Label Text="The following is a listview that includes an array of OBJECTS hardcoded in the Xaml"
+                Margin="10,20"
+                HorizontalTextAlignment="Center"/>
+         <Label Text="Layout: Listview, by default, includes scrolling.  This one uses the ViewCell element to define a basic layout."
+                Margin="10,20"
+                FontSize="Micro"/>
         <ListView Margin="10, 0">
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type local:Person}">

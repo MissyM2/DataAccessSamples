@@ -21,6 +21,7 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddSingleton<IDialogService, DialogService>();
+        mauiAppBuilder.Services.AddSingleton<StudentCaseService>();
 
         return mauiAppBuilder;
     }
@@ -46,6 +47,9 @@ public static class MauiProgram
 
         mauiAppBuilder.Services.AddSingleton<StaticObjectsInJsonFilePage>();
         mauiAppBuilder.Services.AddSingleton<StaticObjectsInJsonFilePageVM>();
+
+        mauiAppBuilder.Services.AddSingleton<SearchDetailPage>();
+        mauiAppBuilder.Services.AddSingleton<SearchDetailVM>();
 
         mauiAppBuilder.Services.AddSingleton<StaticObjectsPulledFromSqliteDbPage>();
         mauiAppBuilder.Services.AddSingleton<StaticObjectsPulledFromSqliteDbPageVM>();

@@ -52,41 +52,41 @@ namespace DataAccessSamples.ViewModels
             
             source.Add(new ListItem
             {
-                ItemName = "ArrayStringsXaml",
+                ItemName = "LV: String Array within Xaml",
                 ItemPage="ArrayOfStringsInXamlPage",
                 ItemDesc = "List of strings within XAML; no class",
             });
             source.Add(new ListItem
             {
-                ItemName = "ArrayObjectsXaml",
+                ItemName = "LV: Object Array within Xaml",
                 ItemPage = "ArrayOfObjectsInXamlPage",
                 ItemDesc = "List of objects with XAML; with class",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "ListStringsVM",
+                ItemName = "LV: String Array within VM",
                 ItemPage = "ListOfStringsInVMPage",
                 ItemDesc = "List of objects with XAML; with class",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "CollectionObjects",
+                ItemName = "LV: Collection of Objects within VM",
                 ItemPage = "StaticObjectsInVMPage",
                 ItemDesc = "Collection of objects coming from VM; with class",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "Objects from separate file",
+                ItemName = "CV: Collection of Objects pulled from separate file",
                 ItemPage = "StaticObjectsInSeparateFilePage",
                 ItemDesc = "Collection of objects coming from a separate class",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "Json",
+                ItemName = "CV:  Collection of Objects pulled from separate JSON file",
                 ItemPage = "StaticObjectsInJsonFilePage",
                 ItemDesc = "Collection of objects coming from json file",
             });

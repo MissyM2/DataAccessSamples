@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataAccessSamples.Views.SearchDetailPage"
+             Title="SearchDetailPage">
+    <ScrollView>
+        <Grid Margin="10"
+              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+              ColumnDefinitions="*, 2*">
+
+            <Label Grid.Row="0" Grid.Column="0" Text="SP Name: " />
+            <Label Grid.Row="0" Grid.Column="1" Text="{Binding StudentCase.RespondentName}" />
+            <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Color="LightGray" HeightRequest="2" />
+
+            <Label Grid.Row="2" Grid.Column="0" Text="Address: " />
+            <Label Grid.Row="2" Grid.Column="1">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding StudentCase.Address1}"/>
+                        <Span Text="{Binding StudentCase.Address2}"/>
+                        <Span Text=", " />
+                        <Span Text="{Binding StudentCase.City}" />
+                        <Span Text=", " />
+                        <Span Text="{Binding StudentCase.State}" />
+                        <Span Text="  " />
+                        <Span Text="{Binding StudentCase.Zip}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <BoxView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Color="LightGray" HeightRequest="2" />
+
+            <Label Grid.Row="4" Grid.Column="0" Text="SP Phone: " />
+            <Label Grid.Row="4" Grid.Column="1" Text="{Binding StudentCase.SPPhone1}" />
+            <BoxView Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Color="LightGray" HeightRequest="2" />
+
+            <Label Grid.Row="6" Grid.Column="0" Text="Gender: " />
+            <Label Grid.Row="6" Grid.Column="1" Text="{Binding StudentCase.Gender}" />
+            <BoxView Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Color="LightGray" HeightRequest="2" />
+
+            <Label Grid.Row="8" Grid.Column="0" Text="Race: " />
+            <Label Grid.Row="8" Grid.Column="1" Text="{Binding StudentCase.Race}" />
+            <BoxView Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" Color="LightGray" HeightRequest="2" />
+
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

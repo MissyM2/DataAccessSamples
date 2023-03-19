@@ -7,12 +7,12 @@
              Title="ListInVM">
 
     <VerticalStackLayout Padding="20">
-        <Label 
-            Text="Picker"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center"
-                        FontSize="Title"
-            FontAttributes="Bold"/>
+        <Label Text="The following is a PICKER whose ItemSource is bound to a List in the ViewModel"
+                Margin="10,20"
+                HorizontalTextAlignment="Center"/>
+         <Label Text="Layout: Default"
+                Margin="10,20"
+                FontSize="Micro"/>
 
         
         <VerticalStackLayout VerticalOptions="CenterAndExpand"

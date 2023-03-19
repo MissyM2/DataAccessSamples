@@ -5,7 +5,14 @@
              Title="StaticObjectsInVMPage">
 
     <StackLayout Margin="20">
-        <ListView ItemsSource="{Binding Monkeys}">
+
+        <Label Text="The following is a LISTVIEW whose ItemsSource is a Bound List in the Viewmodel"
+                Margin="10,10"/>
+         <Label Text="Layout: ItemTemplate with a ViewCell.Inside the ViewCell is a grid that contains Image and two labels.  In this case, you can make a selection and open a detail page.">
+                 
+         </Label> 
+        <ListView ItemsSource="{Binding Monkeys}"
+                  RowHeight="75">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -18,19 +25,23 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Image Grid.RowSpan="2" 
-                                   Source="{Binding ImageUrl}" 
-                                   Aspect="AspectFill"
-                                   HeightRequest="60" 
-                                   WidthRequest="60" />
+                            <StackLayout Grid.RowSpan="2"
+                                         Padding="0,0,5,0">
+                                 <Image Source="{Binding ImageUrl}" 
+                                        Aspect="AspectFill"
+                                        HeightRequest="60" 
+                                        WidthRequest="60"/>
+                            </StackLayout>
+                           
                             <Label Grid.Column="1" 
                                    Text="{Binding Name}" 
-                                   FontAttributes="Bold" />
+                                   FontAttributes="Bold"
+                                   VerticalTextAlignment="Center"/>
                             <Label Grid.Row="1"
                                    Grid.Column="1" 
                                    Text="{Binding Location}"
-                                   FontAttributes="Italic" 
-                                   VerticalOptions="End" />
+                                   FontAttributes="Italic"
+                                   VerticalTextAlignment="Center" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

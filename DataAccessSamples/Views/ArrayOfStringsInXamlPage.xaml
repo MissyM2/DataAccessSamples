@@ -4,6 +4,11 @@
              x:Class="DataAccessSamples.Views.ArrayOfStringsInXamlPage"
              Title="ArrayOfStringsInXamlPage">
      <StackLayout Margin="0,20,0,0">
+         <Label Text="The following is a listview that includes an array of strings hardcoded in the Xaml"
+                Margin="10,20"/>
+         <Label Text="Layout: Default"
+                Margin="10,20"
+                FontSize="Micro"/>
         <ListView>
             <ListView.ItemsSource>
                 <x:Array Type="{x:Type x:String}">

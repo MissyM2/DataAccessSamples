@@ -61,6 +61,7 @@
 	  <None Remove="Services\" />
 	  <None Remove="Models\" />
 	  <None Remove="Data\" />
+	  <None Remove="Resources\Raw\casedata.json" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -68,5 +69,8 @@
 	  <Folder Include="Services\" />
 	  <Folder Include="Models\" />
 	  <Folder Include="Data\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Raw\studentcasedata.json" />
 	</ItemGroup>
 </Project>

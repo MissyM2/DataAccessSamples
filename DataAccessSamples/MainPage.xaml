@@ -13,20 +13,12 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackLayout BackgroundColor="Aqua"
-                         Padding="0,10"
+            <StackLayout Padding="0,10"
                          HorizontalOptions="CenterAndExpand">
                 <Label Text="Data Access Examples"
                     FontSize="Subtitle"
                     HorizontalTextAlignment="Center"/>
             </StackLayout>
-            <HorizontalStackLayout Grid.Row="1"
-                                   BackgroundColor="AliceBlue"
-                                   Padding="0,10">
-                 <Label Text="Selected item:" />
-                 <Label x:Name="currentSelectedItemLabel"
-                   BackgroundColor="Green"/>
-            </HorizontalStackLayout>
            
         </Grid>
 
@@ -36,7 +28,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:ListItem">
                        <ViewCell>
-                        <StackLayout Padding="0, 5"
+                        <StackLayout Padding="18, 5"
                                      Orientation="Horizontal">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path= BindingContext.ItemTappedCommand, Source={x:Reference listView}}" 
@@ -45,8 +37,31 @@
                             </StackLayout.GestureRecognizers>
                             <StackLayout VerticalOptions="Center"
                                          Spacing="0">
-                                <Label Text="{Binding ItemName}" FontSize="Medium" />
-                                <Label Text="{Binding ItemDesc}" FontSize="Micro" />
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Example: "
+                                                  FontSize="Micro"
+                                                  FontAttributes="Bold"/>
+                                            <Span Text="{Binding ItemName}"
+                                                 FontSize="Micro"
+                                                  FontAttributes="Bold"/>        
+                                                       
+                                        </FormattedString>
+                                    </Label.FormattedText>
+
+                                </Label>
+                                <Label>
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Desc: "
+                                                  FontSize="Micro"/>
+                                            <Span Text="{Binding ItemDesc}"
+                                                 FontSize="Micro"/>        
+                                                       
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>
