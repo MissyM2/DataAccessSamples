@@ -1,4 +1,6 @@
-﻿namespace DataAccessSamples;
+﻿using DataAccessSamples.Data;
+
+namespace DataAccessSamples;
 
 public static class MauiProgram
 {
@@ -18,10 +20,13 @@ public static class MauiProgram
 		return builder.Build();
 	}
 
-    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
+    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder) 
     {
         mauiAppBuilder.Services.AddSingleton<IDialogService, DialogService>();
         mauiAppBuilder.Services.AddSingleton<StudentCaseService>();
+
+        mauiAppBuilder.Services.AddSingleton<IMemberService, MemberService>();
+
 
         return mauiAppBuilder;
     }
@@ -51,8 +56,8 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<SearchDetailPage>();
         mauiAppBuilder.Services.AddSingleton<SearchDetailVM>();
 
-        mauiAppBuilder.Services.AddSingleton<StaticObjectsPulledFromSqliteDbPage>();
-        mauiAppBuilder.Services.AddSingleton<StaticObjectsPulledFromSqliteDbPageVM>();
+        mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbPage>();
+        mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbPageVM>();
 
 
         return mauiAppBuilder;

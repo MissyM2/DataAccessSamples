@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataAccessSamples.Views.AddUpdateMemberDetail"
+             Title="AddUpdateMemberDetail">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="SlateGray" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="10" Spacing="15">
+        <VerticalStackLayout>
+            <Label Text="First Name"  />
+            <Entry Text="{Binding MemberDetail.FirstName}" Placeholder="First Name" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Last Name" />
+            <Entry  Text="{Binding MemberDetail.LastName}" Placeholder="Last Name" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Email" />
+            <Entry Text="{Binding MemberDetail.Email}" Placeholder="Email" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <Button Text="Save" Command="{Binding AddUpdateMemberCommand}"/>
+    </StackLayout>
+</ContentPage>
