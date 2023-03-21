@@ -7,21 +7,16 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace DataAccessSamples.ViewModels
 {
-	public partial class DynamicDataFromSqliteDbPageVM : BaseViewModel
+    public partial class DynamicDataFromSqliteDbPageVM : BaseViewModel
     {
-        public static List<MemberModel> MembersListForSearch { get; private set; } = new List<MemberModel>();
-        public ObservableCollection<MemberModel> SourceItems { get; }
+        public ObservableCollection<MemberModel> SourceItems { get; set; } = new();
         public ObservableCollection<MemberModel> SearchResults { get; set; } = new();
 
-        IMemberService _memberService;
-
-        [ObservableProperty]
-        string firstName;
+        IMemberService memberService;
 
         public DynamicDataFromSqliteDbPageVM(IMemberService memberService)
         {
-            _memberService = memberService;
-            SourceItems = new ObservableCollection<MemberModel>();
+            this.memberService = memberService;
         }
 
         public async Task InitializeAsync()
@@ -40,7 +35,7 @@ namespace DataAccessSamples.ViewModels
             try
             {
                 IsBusy = true;
-                var memberList = await _memberService.GetMemberList();
+                var memberList = await memberService.GetMemberList();
 
                 if (SourceItems.Count != 0)
                     SourceItems.Clear();
@@ -53,10 +48,6 @@ namespace DataAccessSamples.ViewModels
                     SourceItems.Add(member);
                     SearchResults.Add(member);
                 }
-
-                MembersListForSearch.Clear();
-                MembersListForSearch.AddRange(memberList);
-
             }
             catch (Exception ex)
             {
@@ -70,13 +61,45 @@ namespace DataAccessSamples.ViewModels
 
         }
 
-    //[RelayCommand]
-    //    async Task GetMemberDetails(int id)
-    //    {
-    //        if (id == 0) return;
+        [RelayCommand]
+        public async Task PerformSearch(string searchTerm)
+        {
 
-    //        await Shell.Current.GoToAsync($"{nameof(DynamicDataFromSqliteDbDetailPage)}?Id={id}", true);
-    //    }
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                searchTerm = string.Empty;
+            }
+
+            searchTerm = searchTerm.ToLower();
+            var filteredItems = SourceItems.Where(value => value.LastName.ToLower().Contains(searchTerm)).ToList();
+
+            foreach (var value in SourceItems)
+            {
+                if (!filteredItems.Contains(value))
+                {
+                    SearchResults.Remove(value);
+                }
+                else if (!SearchResults.Contains(value))
+                {
+                    SearchResults.Add(value);
+                }
+            }
+
+
+        }
+
+        [RelayCommand]
+        async Task GoToDetails(MemberModel memberModel)
+        {
+            if (memberModel == null) return;
+
+            await Shell.Current.GoToAsync(nameof(AddUpdateMemberDetail), true, new Dictionary<string, object>
+                {
+                    {"MemberModel", memberModel}
+                });
+        }
+
+
 
         //[RelayCommand]
         //async Task SaveMember()
@@ -106,8 +129,8 @@ namespace DataAccessSamples.ViewModels
         //        await Shell.Current.DisplayAlert("Info", App.MemberService.StatusMessage, "Ok");
         //    }
 
-          //  await GetMemberList();
-           // await ClearForm();
+        //  await GetMemberList();
+        // await ClearForm();
         //}
 
         //[RelayCommand]
@@ -149,5 +172,7 @@ namespace DataAccessSamples.ViewModels
         //    LastName = string.Empty;
         //    Email = string.Empty;
         //}
+
+
     }
 }

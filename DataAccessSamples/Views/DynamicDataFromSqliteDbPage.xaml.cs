@@ -1,5 +1,4 @@
-﻿
-namespace DataAccessSamples.Views;
+﻿namespace DataAccessSamples.Views;
 
 public partial class DynamicDataFromSqliteDbPage : ContentPage
 {
@@ -7,7 +6,7 @@ public partial class DynamicDataFromSqliteDbPage : ContentPage
 	{
 		InitializeComponent();
 		BindingContext = vm;
-	}
+    }
 
     protected override async void OnAppearing()
     {
@@ -17,5 +16,18 @@ public partial class DynamicDataFromSqliteDbPage : ContentPage
         {
             await vm.InitializeAsync();
         }
+    }
+
+    async void searchBar_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
+    {
+        if (e.NewTextValue == "")
+        {
+            if (BindingContext is DynamicDataFromSqliteDbPageVM vm)
+            {
+
+                await vm.PerformSearch("");
+            }
+        }
+
     }
 }

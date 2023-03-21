@@ -5,74 +5,68 @@
              xmlns:searchHandlers="clr-namespace:DataAccessSamples.SearchHandlers"
              xmlns:models="clr-namespace:DataAccessSamples.Models"
              xmlns:viewmodels="clr-namespace:DataAccessSamples.ViewModels"
+             xmlns:data="clr-namespace:DataAccessSamples.Data"
+             xmlns:views="clr-namespace:DataAccessSamples.Views"
              x:DataType="viewmodels:DynamicDataFromSqliteDbPageVM"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              ios:Page.UseSafeArea="True"
              Title="DynamicDataFromSqliteDbPage">
 
-     <Shell.SearchHandler>
+    <Grid RowDefinitions="50, auto">
+         <SearchBar x:Name="searchBar"
+                    Grid.Row="0"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="CenterAndExpand"
+                    Placeholder="Search member list..."
+                    TextChanged="searchBar_TextChanged"
+                    BackgroundColor="White"
+                    SearchCommand="{Binding PerformSearchCommand}"
+                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
 
-        <searchHandlers:MemberSearchHandler 
-            Placeholder="Search Name"
-            ShowsResults="True"
-            NavigationRoute="AddUpdateMemberDetail"
-            Members="{x:Static viewmodels:DynamicDataFromSqliteDbPageVM.MembersListForSearch}">
-            <searchHandlers:MemberSearchHandler.ItemTemplate>
-                <DataTemplate x:DataType="models:MemberModel">
-                    <Grid Margin="5" RowDefinitions="Auto" ColumnDefinitions="40,Auto">
-                        <Image Grid.Row="0" Grid.Column="0" Source="user" HeightRequest="35" WidthRequest="35" />
-                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding LastName}" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
-                    </Grid>
-                </DataTemplate>
-            </searchHandlers:MemberSearchHandler.ItemTemplate>
-        </searchHandlers:MemberSearchHandler>
-    </Shell.SearchHandler>
-    <StackLayout Margin="10">
-        <Label  Text="Member List" FontSize="28"/>
-        <!--<Button Text="Add Member" Command="{Binding AddUpdateMemberCommand}" HorizontalOptions="EndAndExpand" />-->
-     
-        <CollectionView ItemsSource="{Binding SourceItems}">
-            <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="models:MemberModel">
-                    <!--<SwipeView>
-                        <SwipeView.LeftItems>
-                            <SwipeItems>
-                                <SwipeItemView>
-                                    <VerticalStackLayout  BackgroundColor="LightBlue">
-                                        <Label Text="Edit" 
-                                               HorizontalTextAlignment="Center" 
-                                               VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" />
-                                    </VerticalStackLayout>
-                                </SwipeItemView>
-                                <SwipeItemView>
-                                    <VerticalStackLayout BackgroundColor="Red">
-                                        <Label Text="Delete" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White" />
-                                    </VerticalStackLayout>
-                                </SwipeItemView>
-                                <SwipeItem Text="Edit" IconImageSource="dotnet_bot" BackgroundColor="LightBlue" 
-                                           CommandParameter="{Binding .}"
-                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:DynamicDataFromSqliteDbPageVM}},Path=EditMemberCommand}" />
-                                <SwipeItem Text="Delete" IconImageSource="dotnet_bot" BackgroundColor="Red"  CommandParameter="{Binding .}"
-                                           Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:DynamicDataFromSqliteDbPageVM}},Path=DeleteMemberCommand}" />
-                            </SwipeItems>  
-                        </SwipeView.LeftItems>-->
-                        <Frame Margin="10" Padding="10">
-                            <VerticalStackLayout>
-                                <HorizontalStackLayout Spacing="10">
-                                    <Label Text="{Binding FirstName}" FontSize="18" FontAttributes="Bold" />
-                                    <Label Text="{Binding LastName}" FontSize="18" FontAttributes="Bold" />
-                                </HorizontalStackLayout>
-                                <Label Text="{Binding Email}" />
-                            </VerticalStackLayout>
-                            <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:DynamicDataFromSqliteDbPageVM}},Path=DisplayActionCommand}"
-                                                  CommandParameter="{Binding .}" />
-                            </Frame.GestureRecognizers>
-                        </Frame>
-                    <!--</SwipeView>-->
-                   
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
-    </StackLayout>
+            <CollectionView x:Name="MembersCV"
+                            Grid.Row="1"
+                            ItemsSource="{Binding SearchResults}"
+                            SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:MemberModel">
+                        <!--<SwipeView>
+                            <SwipeView.LeftItems>
+                                <SwipeItems>
+                                    <SwipeItemView>
+                                        <VerticalStackLayout  BackgroundColor="LightBlue">
+                                            <Label Text="Edit" 
+                                                   HorizontalTextAlignment="Center" 
+                                                   VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" />
+                                        </VerticalStackLayout>
+                                    </SwipeItemView>
+                                    <SwipeItemView>
+                                        <VerticalStackLayout BackgroundColor="Red">
+                                            <Label Text="Delete" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White" />
+                                        </VerticalStackLayout>
+                                    </SwipeItemView>
+                                    <SwipeItem Text="Edit" IconImageSource="dotnet_bot" BackgroundColor="LightBlue" 
+                                               CommandParameter="{Binding .}"
+                                               Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:DynamicDataFromSqliteDbPageVM}},Path=EditMemberCommand}" />
+                                    <SwipeItem Text="Delete" IconImageSource="dotnet_bot" BackgroundColor="Red"  CommandParameter="{Binding .}"
+                                               Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:DynamicDataFromSqliteDbPageVM}},Path=DeleteMemberCommand}" />
+                                </SwipeItems>  
+                            </SwipeView.LeftItems> -->
+                            <Frame Margin="10" Padding="10">
+                                <VerticalStackLayout>
+                                    <HorizontalStackLayout Spacing="10">
+                                        <Label Text="{Binding FirstName}" FontSize="18" FontAttributes="Bold" />
+                                        <Label Text="{Binding LastName}" FontSize="18" FontAttributes="Bold" />
+                                    </HorizontalStackLayout>
+                                    <Label Text="{Binding Email}" />
+                                </VerticalStackLayout>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:DynamicDataFromSqliteDbPageVM}},Path=GoToDetailsCommand}"
+                                                          CommandParameter="{Binding .}" />
+                                </Frame.GestureRecognizers>
+                            </Frame>
+                       <!-- </SwipeView>-->
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+    </Grid> 
 </ContentPage>

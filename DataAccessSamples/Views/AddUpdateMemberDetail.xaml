@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataAccessSamples.Views.AddUpdateMemberDetail"
-             Title="AddUpdateMemberDetail">
+             Title="AddUpdateMemberModel">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">
@@ -14,25 +14,25 @@
     <StackLayout Margin="10" Spacing="15">
         <VerticalStackLayout>
             <Label Text="First Name"  />
-            <Entry Text="{Binding MemberDetail.FirstName}" Placeholder="First Name" />
+            <Entry Text="{Binding MemberModel.FirstName}" Placeholder="First Name" />
             <BoxView HeightRequest="0.8" Color="Gray" />
         </VerticalStackLayout>
 
 
         <VerticalStackLayout>
             <Label Text="Last Name" />
-            <Entry  Text="{Binding MemberDetail.LastName}" Placeholder="Last Name" />
+            <Entry  Text="{Binding MemberModel.LastName}" Placeholder="Last Name" />
             <BoxView HeightRequest="0.8" Color="Gray" />
         </VerticalStackLayout>
 
 
         <VerticalStackLayout>
             <Label Text="Email" />
-            <Entry Text="{Binding MemberDetail.Email}" Placeholder="Email" />
+            <Entry Text="{Binding MemberModel.Email}" Placeholder="Email" />
             <BoxView HeightRequest="0.8" Color="Gray" />
         </VerticalStackLayout>
 
 
-        <Button Text="Save" Command="{Binding AddUpdateMemberCommand}"/>
+        <!--<Button Text="Save" Command="{Binding AddUpdateMemberCommand}"/>-->
     </StackLayout>
 </ContentPage>

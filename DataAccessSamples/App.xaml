@@ -10,6 +10,37 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
+
+         <!--<DataTemplate x:Key="MemberTemplate">
+            <Grid Padding="10"
+                  RowDefinitions="Auto,Auto, Auto"
+                  ColumnDefinitions="Auto">
+                <Label Grid.Column="1" 
+                       Text="{Binding FirstName}" 
+                       FontAttributes="Bold" />
+                <Label Grid.Column="1" 
+                       Text="{Binding LastName}" 
+                       FontAttributes="Bold" />
+                <Label Grid.Row="1"
+                       Grid.Column="1" 
+                       Text="{Binding Email}"
+                       FontAttributes="Italic" 
+                       VerticalOptions="End" />
+            </Grid>
+        </DataTemplate>
+
+        <DataTemplate x:Key="MemberSearchTemplate">
+            <Grid Padding="10"
+                  ColumnDefinitions="Auto, Auto">
+                <Label Text="{Binding LastName}" 
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" />
+                <Label Grid.Column="1" 
+                       Text="{Binding FirstName}" 
+                       FontAttributes="Bold"
+                       VerticalOptions="Center" />
+            </Grid>
+        </DataTemplate>-->
     </Application.Resources>
 </Application>
 

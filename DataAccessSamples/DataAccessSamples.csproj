@@ -63,7 +63,6 @@
 	  <None Remove="Models\" />
 	  <None Remove="Data\" />
 	  <None Remove="Resources\Raw\casedata.json" />
-	  <None Remove="SearchHandlers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -71,7 +70,6 @@
 	  <Folder Include="Services\" />
 	  <Folder Include="Models\" />
 	  <Folder Include="Data\" />
-	  <Folder Include="SearchHandlers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Raw\studentcasedata.json" />
