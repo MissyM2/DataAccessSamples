@@ -53,8 +53,8 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<StaticObjectsInJsonFilePage>();
         mauiAppBuilder.Services.AddSingleton<StaticObjectsInJsonFilePageVM>();
 
-        mauiAppBuilder.Services.AddSingleton<SearchDetailPage>();
-        mauiAppBuilder.Services.AddSingleton<SearchDetailVM>();
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsInJsonFileDetailPage>();
+        mauiAppBuilder.Services.AddSingleton<StaticObjectsInJsonFileDetailPageVM>();
 
         mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbPage>();
         mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbPageVM>();

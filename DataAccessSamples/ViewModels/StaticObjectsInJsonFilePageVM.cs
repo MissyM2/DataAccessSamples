@@ -66,7 +66,7 @@ namespace DataAccessSamples.ViewModels
             if (studentCase == null)
                 return;
 
-            await Shell.Current.GoToAsync(nameof(SearchDetailPage), true, new Dictionary<string, object>
+            await Shell.Current.GoToAsync(nameof(StaticObjectsInJsonFileDetailPage), true, new Dictionary<string, object>
             {
                 {"StudentCase", studentCase }
             });

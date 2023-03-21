@@ -24,6 +24,7 @@ public partial class AppShell : Shell
         Routes.Add(nameof(StaticObjectsInSeparateFilePage), typeof(StaticObjectsInSeparateFilePage));
 
         Routes.Add(nameof(StaticObjectsInJsonFilePage), typeof(StaticObjectsInJsonFilePage));
+        Routes.Add(nameof(StaticObjectsInJsonFileDetailPage), typeof(StaticObjectsInJsonFileDetailPage));
 
         Routes.Add(nameof(DynamicDataFromSqliteDbPage), typeof(DynamicDataFromSqliteDbPage));
         Routes.Add(nameof(DynamicDataFromSqliteDbDetailPage), typeof(DynamicDataFromSqliteDbDetailPage));
