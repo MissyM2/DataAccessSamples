@@ -93,7 +93,7 @@ namespace DataAccessSamples.ViewModels
         {
             if (memberModel == null) return;
 
-            await Shell.Current.GoToAsync(nameof(AddUpdateMemberDetail), true, new Dictionary<string, object>
+            await Shell.Current.GoToAsync(nameof(DynamicDataFromSqliteDbDetailPage), true, new Dictionary<string, object>
                 {
                     {"MemberModel", memberModel}
                 });

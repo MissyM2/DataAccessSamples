@@ -5,9 +5,36 @@
              xmlns:viewmodels="clr-namespace:DataAccessSamples.ViewModels"
              x:DataType="viewmodels:DynamicDataFromSqliteDbDetailPageVM"
              Title="DynamicDataFromSqliteDbDetailPage">
-   <StackLayout>
-        <Label Text="{Binding MemberModel.FirstName}"
-                VerticalOptions="Center" 
-                HorizontalOptions="Center" FontSize="100"/>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="SlateGray" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout Margin="10" Spacing="15">
+        <VerticalStackLayout>
+            <Label Text="First Name"  />
+            <Entry Text="{Binding MemberModel.FirstName}" Placeholder="First Name" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Last Name" />
+            <Entry  Text="{Binding MemberModel.LastName}" Placeholder="Last Name" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <VerticalStackLayout>
+            <Label Text="Email" />
+            <Entry Text="{Binding MemberModel.Email}" Placeholder="Email" />
+            <BoxView HeightRequest="0.8" Color="Gray" />
+        </VerticalStackLayout>
+
+
+        <!--<Button Text="Save" Command="{Binding AddUpdateMemberCommand}"/>-->
     </StackLayout>
 </ContentPage>

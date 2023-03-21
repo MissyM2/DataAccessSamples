@@ -58,10 +58,9 @@ public static class MauiProgram
 
         mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbPage>();
         mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbPageVM>();
-        mauiAppBuilder.Services.AddSingleton<AddUpdateMemberDetail>();
-        mauiAppBuilder.Services.AddSingleton<AddUpdateMemberDetailVM>();
-mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbDetailPage>();
-                    mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbDetailPageVM>();
+
+        mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbDetailPage>();
+        mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbDetailPageVM>();
 
 
         return mauiAppBuilder;

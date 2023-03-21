@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataAccessSamples.Views.DynamicDataFromSqliteDbPage"
-             xmlns:searchHandlers="clr-namespace:DataAccessSamples.SearchHandlers"
              xmlns:models="clr-namespace:DataAccessSamples.Models"
              xmlns:viewmodels="clr-namespace:DataAccessSamples.ViewModels"
              xmlns:data="clr-namespace:DataAccessSamples.Data"

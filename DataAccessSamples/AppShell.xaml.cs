@@ -14,14 +14,19 @@ public partial class AppShell : Shell
     void RegisterRoutes()
     {
         Routes.Add(nameof(ArrayOfStringsInXamlPage), typeof(ArrayOfStringsInXamlPage));
+
         Routes.Add(nameof(ArrayOfObjectsInXamlPage), typeof(ArrayOfObjectsInXamlPage));
+
         Routes.Add(nameof(ListOfStringsInVMPage), typeof(ListOfStringsInVMPage));
+
         Routes.Add(nameof(StaticObjectsInVMPage), typeof(StaticObjectsInVMPage));
+
         Routes.Add(nameof(StaticObjectsInSeparateFilePage), typeof(StaticObjectsInSeparateFilePage));
+
         Routes.Add(nameof(StaticObjectsInJsonFilePage), typeof(StaticObjectsInJsonFilePage));
+
         Routes.Add(nameof(DynamicDataFromSqliteDbPage), typeof(DynamicDataFromSqliteDbPage));
         Routes.Add(nameof(DynamicDataFromSqliteDbDetailPage), typeof(DynamicDataFromSqliteDbDetailPage));
-        Routes.Add(nameof(AddUpdateMemberDetail), typeof(AddUpdateMemberDetail));
 
         foreach (var item in Routes)
         {
