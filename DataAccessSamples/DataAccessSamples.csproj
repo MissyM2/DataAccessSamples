@@ -54,6 +54,7 @@
 	<ItemGroup>
 	  <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
 	  <PackageReference Include="CommunityToolkit.Mvvm" Version="8.1.0" />
+	  <PackageReference Include="SQLitePCLRaw.bundle_green" Version="2.1.4" />
 	</ItemGroup>
 	<ItemGroup>
 	  <None Remove="Views\" />
@@ -62,6 +63,7 @@
 	  <None Remove="Models\" />
 	  <None Remove="Data\" />
 	  <None Remove="Resources\Raw\casedata.json" />
+	  <None Remove="SearchHandlers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Views\" />
@@ -69,6 +71,7 @@
 	  <Folder Include="Services\" />
 	  <Folder Include="Models\" />
 	  <Folder Include="Data\" />
+	  <Folder Include="SearchHandlers\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Raw\studentcasedata.json" />

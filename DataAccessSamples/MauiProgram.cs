@@ -17,16 +17,16 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
-		return builder.Build();
+            
+
+        return builder.Build();
 	}
 
-    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder) 
+    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddSingleton<IDialogService, DialogService>();
         mauiAppBuilder.Services.AddSingleton<StudentCaseService>();
-
         mauiAppBuilder.Services.AddSingleton<IMemberService, MemberService>();
-
 
         return mauiAppBuilder;
     }
@@ -58,6 +58,10 @@ public static class MauiProgram
 
         mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbPage>();
         mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbPageVM>();
+        mauiAppBuilder.Services.AddSingleton<AddUpdateMemberDetail>();
+        mauiAppBuilder.Services.AddSingleton<AddUpdateMemberDetailVM>();
+mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbDetailPage>();
+                    mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbDetailPageVM>();
 
 
         return mauiAppBuilder;

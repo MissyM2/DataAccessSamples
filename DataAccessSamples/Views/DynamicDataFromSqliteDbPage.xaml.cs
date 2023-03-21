@@ -9,13 +9,13 @@ public partial class DynamicDataFromSqliteDbPage : ContentPage
 		BindingContext = vm;
 	}
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
         if (BindingContext is DynamicDataFromSqliteDbPageVM vm)
         {
-            vm.GetMemberListCommand.Execute(null);
+            await vm.InitializeAsync();
         }
     }
 }

@@ -7,74 +7,89 @@ namespace DataAccessSamples.Services
     public class MemberService : IMemberService
     {
 
-        private SQLiteAsyncConnection _dbConnection;
+        SQLiteAsyncConnection _dbConnection;
 
-        private async Task SetUpDb()
+        List<MemberModel> memberList;
+
+        private async Task Init()
         {
             if (_dbConnection == null)
             {
-                string dbPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "MemberDb.db3");
+                string dbPath = Path.Combine(FileSystem.AppDataDirectory, "MemberDb.db3");
                 _dbConnection = new SQLiteAsyncConnection(dbPath);
                 await _dbConnection.CreateTableAsync<MemberModel>();
-                AddTestData();
+                //var item1 = new MemberModel
+                //{
+                //    FirstName = "Joanne",
+                //    LastName = "Lyons",
+                //    Email = "Babe@lyons.com",
+                //    Address1 = "102 Herndon Pkwy",
+                //    Address2 = "",
+                //    City = "Herndon",
+                //    State = "VA",
+                //    Zip = "10128",
+                //    Subscribed = true
+                //};
+                //var item2 = new MemberModel
+                //{
+                //    FirstName = "John",
+                //    LastName = "Lyons",
+                //    Email = "john@lyons.com",
+                //    Address1 = "102 Herndon Pkwy",
+                //    Address2 = "",
+                //    City = "Herndon",
+                //    State = "VA",
+                //    Zip = "10128",
+                //    Subscribed = true
+                //};
+
+                //await _dbConnection.InsertAsync(item1);
+                //await _dbConnection.InsertAsync(item2);
             }
         }
 
 
 
-        void AddTestData()
-        {
-            var item1 = new MemberModel{
-                FirstName = "Joanne",
-                LastName = "Lyons",
-                Email = "Babe@lyons.com",
-                Address1 = "102 Herndon Pkwy",
-                Address2 = "",
-                City = "Herndon",
-                State = "VA",
-                Zip = "10128",
-                Subscribed = true
-            };
-            var item2 = new MemberModel
-            {
-                FirstName = "John",
-                LastName = "Lyons",
-                Email = "john@lyons.com",
-                Address1 = "102 Herndon Pkwy",
-                Address2 = "",
-                City = "Herndon",
-                State = "VA",
-                Zip = "10128",
-                Subscribed = true
-            };
-
-            _dbConnection.InsertAsync(item1);
-            _dbConnection.InsertAsync(item2);
-        }
-
-        public async Task<int> AddMember(MemberModel MemberModel)
-        {
-            await SetUpDb();
-            return await _dbConnection.InsertAsync(MemberModel);
-        }
-
-        public async Task<int> DeleteMember(MemberModel MemberModel)
-        {
-            await SetUpDb();
-            return await _dbConnection.DeleteAsync(MemberModel);
-        }
-
         public async Task<List<MemberModel>> GetMemberList()
         {
-            await SetUpDb();
-            var MemberList = await _dbConnection.Table<MemberModel>().ToListAsync();
-            return MemberList;
+            await Init();
+            memberList = await _dbConnection.Table<MemberModel>().ToListAsync();
+            return memberList;
+
         }
 
-        public async Task<int> UpdateMember(MemberModel MemberModel)
+        //public async Task<MemberModel> GetMember(int id)
+        //{
+        //    try
+        //    {
+        //        Init();
+        //        return await _dbConnection.Table<MemberModel>().FirstOrDefaultAsync(q => q.Id == id);
+        //    }
+        //    catch (Exception)
+        //    {
+        //        StatusMessage = "Failed to retrieve data.";
+        //    }
+
+        //    return null;
+        //}
+
+        public async Task<int> AddMember(MemberModel memberModel)
         {
-            await SetUpDb();
-            return await _dbConnection.UpdateAsync(MemberModel);
+            await Init();
+            return await _dbConnection.InsertAsync(memberModel);
+
+        }
+
+        public async Task<int> DeleteMember(MemberModel memberModel)
+        {
+            await Init();
+            return await _dbConnection.DeleteAsync(memberModel);
+        }
+
+        public async Task<int> UpdateMember(MemberModel memberModel)
+        {
+            await Init();
+            return await _dbConnection.UpdateAsync(memberModel);
         }
     }
 }
