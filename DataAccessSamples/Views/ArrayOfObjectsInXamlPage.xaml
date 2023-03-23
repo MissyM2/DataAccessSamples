@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="DataAccessSamples.Views.ArrayOfObjectsInXamlPage"
              xmlns:local="clr-namespace:DataAccessSamples.Models"
-             Title="ArrayOfObjectsInXamlPage">
+             Title="Example: LV/Static2: Person">
     <StackLayout>
          <Label Text="The following is a listview that includes an array of OBJECTS hardcoded in the Xaml"
                 Margin="10,20"

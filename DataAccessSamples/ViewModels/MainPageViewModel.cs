@@ -40,62 +40,72 @@ namespace DataAccessSamples.ViewModels
                 return;
             }
 
-            SelectedListItem = listItem.ItemPage;
+            if (listItem.ItemPage == "MainPage")
+            {
+                await dialogService.ShowAlertAsync("MainPage", "No where to navigate to", "OK", null);
+                return;
+            }
 
-            //await dialogService.ShowAlertAsync("OK", "ItemTapped " + SelectedListItem, "OK", null);
+            SelectedListItem = listItem.ItemPage;
 
             await Shell.Current.GoToAsync(SelectedListItem);
         }
 
         void CreateListItemCollection()
         {
-            
             source.Add(new ListItem
             {
-                ItemName = "LV/Static: String Array within Xaml",
+                ItemName = "LV/StaticA: This List",
+                ItemPage = "MainPage",
+                ItemDesc = "This page; LV; TapGesture; Obs Coll; iList ",
+            });
+
+            source.Add(new ListItem
+            {
+                ItemName = "LV/Static1: Fruit",
                 ItemPage="ArrayOfStringsInXamlPage",
-                ItemDesc = "List of strings within XAML; no class",
+                ItemDesc = "List of strings within XAML; no separate class",
             });
             source.Add(new ListItem
             {
-                ItemName = "LV/Static: Object Array within Xaml",
+                ItemName = "LV/Static2: Person",
                 ItemPage = "ArrayOfObjectsInXamlPage",
-                ItemDesc = "List of objects with XAML; with class",
+                ItemDesc = "Object Array within Xaml;with separate class",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "LV/Static: String Array within VM",
+                ItemName = "LV/Static3: Fruit ",
                 ItemPage = "ListOfStringsInVMPage",
-                ItemDesc = "List of objects with XAML; with class",
+                ItemDesc = "Picker;List of strings coming from VM; no separate class",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "LV/Static: Collection of Objects within VM",
+                ItemName = "LV/Static4: Monkeys",
                 ItemPage = "StaticObjectsInVMPage",
-                ItemDesc = "Collection of objects coming from VM; with class",
+                ItemDesc = "ObservableCollection of objects coming from VM; with separate class",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "CV/Static: Collection of Objects pulled from separate file",
+                ItemName = "CV/Static1",
                 ItemPage = "StaticObjectsInSeparateFilePage",
-                ItemDesc = "Collection of objects coming from a separate class",
+                ItemDesc = "Collection of objects coming from a separate class; data coming from separate file",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "CV/Static:  Collection of Objects pulled from separate JSON file",
+                ItemName = "CV/Static2",
                 ItemPage = "StaticObjectsInJsonFilePage",
-                ItemDesc = "Collection of objects coming from json file",
+                ItemDesc = "CV;Search, Obs Collection; Main -> Detail, TapGestureRecog,data from external json file",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "CV/Dynamic: Collection of from Sqlite DB",
+                ItemName = "CV/Dynamic: Member",
                 ItemPage = "DynamicDataFromSqliteDbPage",
-                ItemDesc = "DynamicDataFromSqliteDbPage",
+                ItemDesc = "CV; Obs Coll; Main -> Detail, Tap;  dadta from Sqlite DB",
             });
 
             ListItems = new ObservableCollection<ListItem>(source);

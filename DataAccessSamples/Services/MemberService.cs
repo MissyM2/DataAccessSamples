@@ -106,8 +106,7 @@ namespace DataAccessSamples.Services
         public async Task<List<MemberModel>> GetMemberList()
         {
             await Init();
-            memberList = await _dbConnection.Table<MemberModel>().ToListAsync();
-            return memberList;
+            return await _dbConnection.Table<MemberModel>().ToListAsync();
 
         }
 

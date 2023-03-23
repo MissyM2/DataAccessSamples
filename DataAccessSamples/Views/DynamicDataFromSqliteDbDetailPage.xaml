@@ -4,7 +4,7 @@
              x:Class="DataAccessSamples.Views.DynamicDataFromSqliteDbDetailPage"
              xmlns:viewmodels="clr-namespace:DataAccessSamples.ViewModels"
              x:DataType="viewmodels:DynamicDataFromSqliteDbDetailPageVM"
-             Title="DynamicDataFromSqliteDbDetailPage">
+             Title="Example: CV/Dynamic: Member (Detail)">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Label">

@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:DataAccessSamples.Models"
-             x:Class="DataAccessSamples.MainPage">
+             x:Class="DataAccessSamples.MainPage"
+             Title="LV/StaticA: This List">
 
-    <StackLayout Margin="20">
+    <StackLayout Margin="10">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -13,7 +14,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackLayout Padding="0,10"
+            <StackLayout Padding="0"
                          HorizontalOptions="CenterAndExpand">
                 <Label Text="Data Access Examples"
                     FontSize="Subtitle"
@@ -24,28 +25,25 @@
 
         <ListView x:Name="listView"
                   ItemsSource="{Binding ListItems}"
-                  RowHeight="75">
+                  RowHeight="85">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:ListItem">
-                       <ViewCell>
-                        <StackLayout Padding="18, 5"
-                                     Orientation="Horizontal">
+                    <ViewCell>
+                        <StackLayout Padding="18, 10">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer Command="{Binding Path= BindingContext.ItemTappedCommand, Source={x:Reference listView}}" 
                                                     CommandParameter="{Binding .}"  
                                                     NumberOfTapsRequired="1"/>
                             </StackLayout.GestureRecognizers>
-                            <StackLayout VerticalOptions="Center"
-                                         Spacing="0">
-                                <Label>
+                                <Label HorizontalTextAlignment="Start"
+                                       Margin="0,0,0,5">
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Example: "
-                                                  FontSize="Micro"
+                                            <Span Text="Example Title: "
+                                                  FontSize="Small"
                                                   FontAttributes="Bold"/>
                                             <Span Text="{Binding ItemName}"
-                                                 FontSize="Micro"
-                                                  FontAttributes="Bold"/>        
+                                                 FontSize="Small"/>        
                                                        
                                         </FormattedString>
                                     </Label.FormattedText>
@@ -54,15 +52,30 @@
                                 <Label>
                                     <Label.FormattedText>
                                         <FormattedString>
-                                            <Span Text="Desc: "
-                                                  FontSize="Micro"/>
-                                            <Span Text="{Binding ItemDesc}"
-                                                 FontSize="Micro"/>        
+                                            <Span Text="Page Name: "
+                                                  FontSize="Caption"
+                                                  FontAttributes="Bold"/>
+                                            <Span Text="{Binding ItemPage}"
+                                                 FontSize="Caption"/>        
                                                        
                                         </FormattedString>
                                     </Label.FormattedText>
+
                                 </Label>
-                            </StackLayout>
+                                <Label LineBreakMode="WordWrap"
+                                       MaxLines="4">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="Desc: "
+                                                  FontSize="Caption"
+                                                  FontAttributes="Bold"/>
+                                            <Span Text="{Binding ItemDesc}"
+                                                 FontSize="Caption"/>        
+                                                       
+                                        </FormattedString>
+                                    </Label.FormattedText>
+
+                                </Label>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

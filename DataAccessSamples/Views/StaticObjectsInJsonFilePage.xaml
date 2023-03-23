@@ -5,7 +5,7 @@
              xmlns:viewmodels="clr-namespace:DataAccessSamples.ViewModels"
              x:DataType="viewmodels:StaticObjectsInJsonFilePageVM"
              x:Class="DataAccessSamples.Views.StaticObjectsInJsonFilePage"
-             Title="StaticObjectsInJsonFilePage">
+             Title="Example: CV/Static2 (Main)">
 
     <Grid RowDefinitions="175,50,auto">
         <StackLayout>

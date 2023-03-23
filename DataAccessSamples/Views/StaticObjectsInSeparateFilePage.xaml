@@ -1,60 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:DataAccessSamples.Controls"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="DataAccessSamples.Views.StaticObjectsInSeparateFilePage"
-             Title="StaticObjectsInSeparateFilePage">
-    <VerticalStackLayout>
-         <!--<CollectionView Margin="20"
-                    ItemsSource="{x:Static data:MemberData.MemberList}"
-                    ItemTemplate="{StaticResource MemberTemplate}"
-                    SelectionMode="Single"
-                    SelectionChanged="OnCollectionViewSelectionChanged" />-->
+             Title="Example: CV/Static1">
+    <!--<ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal" />
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" 
+                                        Value="#689F39" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>-->
+    
+    <!--<Shell.SearchHandler>
+        <controls:AnimalSearchHandler Placeholder="Enter search term"
+                                      ShowsResults="true"
+                                      ItemTemplate="{StaticResource AnimalSearchTemplate}"
+                                      Animals="{x:Static data:MonkeyData.Monkeys}"
+                                      SelectedItemNavigationTarget="{x:Type views:MonkeyDetailPage}" />
+    </Shell.SearchHandler>-->
 
-        <!--<CollectionView x:Name="MembersCV"
-                            Grid.Row="1"
-                            ItemsSource="{Binding SourceItems}"
-                            SelectionMode="None">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="models:MemberModel">
-                        <SwipeView>
-                            <SwipeView.LeftItems>
-                                <SwipeItems>
-                                    <SwipeItemView>
-                                        <VerticalStackLayout  BackgroundColor="LightBlue">
-                                            <Label Text="Edit" 
-                                                   HorizontalTextAlignment="Center" 
-                                                   VerticalTextAlignment="Center" FontAttributes="Bold" TextColor="White" />
-                                        </VerticalStackLayout>
-                                    </SwipeItemView>
-                                    <SwipeItemView>
-                                        <VerticalStackLayout BackgroundColor="Red">
-                                            <Label Text="Delete" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" FontAttributes="Bold" TextColor="White" />
-                                        </VerticalStackLayout>
-                                    </SwipeItemView>
-                                    <SwipeItem Text="Edit" IconImageSource="dotnet_bot" BackgroundColor="LightBlue" 
-                                               CommandParameter="{Binding .}"
-                                               Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:DynamicDataFromSqliteDbPageVM}},Path=EditMemberCommand}" />
-                                    <SwipeItem Text="Delete" IconImageSource="dotnet_bot" BackgroundColor="Red"  CommandParameter="{Binding .}"
-                                               Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:DynamicDataFromSqliteDbPageVM}},Path=DeleteMemberCommand}" />
-                                </SwipeItems>  
-                            </SwipeView.LeftItems>
-                            <Frame Margin="10" Padding="10">
-                                <VerticalStackLayout>
-                                    <HorizontalStackLayout Spacing="10">
-                                        <Label Text="{Binding FirstName}" FontSize="18" FontAttributes="Bold" />
-                                        <Label Text="{Binding LastName}" FontSize="18" FontAttributes="Bold" />
-                                    </HorizontalStackLayout>
-                                    <Label Text="{Binding Email}" />
-                                </VerticalStackLayout>
-                                <Frame.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodels:DynamicDataFromSqliteDbPageVM}},Path=DisplayActionCommand}"
-                                                      CommandParameter="{Binding .}" />
-                                </Frame.GestureRecognizers>
-                            </Frame>
-                        </SwipeView>
-                   
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>-->
-    </VerticalStackLayout>
+    
+
+    <!--<Grid RowDefinitions="50,auto">
+        <SearchBar x:Name="searchBar"
+                    Grid.Row="1"
+                    HorizontalOptions="Fill"
+                    VerticalOptions="CenterAndExpand"
+                    Placeholder="Enter search term"
+                    BackgroundColor="White"
+                    TextChanged="searchBar_TextChanged"
+                    SearchCommand="{Binding PerformSearchCommand}"
+                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+
+        
+    
+        <CollectionView Margin="20"
+                        ItemsSource="{x:Static data:MemberData.MemberList}"
+                        ItemTemplate="{StaticResource AnimalTemplate}"
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionView_SelectionChanged" >
+            <CollectionView.Behaviors>
+                <toolkit:EventToCommandBehavior>
+
+
+                </toolkit:EventToCommandBehavior>
+
+            </CollectionView.Behaviors>
+
+        </CollectionView>
+    </Grid>-->
 </ContentPage>

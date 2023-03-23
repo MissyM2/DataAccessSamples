@@ -4,7 +4,7 @@
              x:Class="DataAccessSamples.Views.ListOfStringsInVMPage"
              xmlns:viewmodels="clr-namespace:DataAccessSamples.ViewModels"
              x:DataType="viewmodels:ListOfStringsInVMPageVM"
-             Title="ListInVM">
+             Title="Example: LV/Static3: Fruit">
 
     <VerticalStackLayout Padding="20">
         <Label Text="The following is a PICKER whose ItemSource is bound to a List in the ViewModel"

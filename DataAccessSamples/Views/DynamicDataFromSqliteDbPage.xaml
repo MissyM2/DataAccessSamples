@@ -9,7 +9,7 @@
              x:DataType="viewmodels:DynamicDataFromSqliteDbPageVM"
              xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
              ios:Page.UseSafeArea="True"
-             Title="DynamicDataFromSqliteDbPage">
+             Title="Example: CV/Dynamic: Member (Main)">
 
     <Grid RowDefinitions="50, auto">
          <SearchBar x:Name="searchBar"
