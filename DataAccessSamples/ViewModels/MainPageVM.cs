@@ -55,16 +55,16 @@ namespace DataAccessSamples.ViewModels
         {
             source.Add(new ListItem
             {
-                ItemName = "CVSqliteMain",
+                ItemName = "CV/Sqlite: Member",
                 ItemPage = "CVSqlitePage",
-                ItemDesc = "LV; SearchBar;Obs Coll; Main => Detail,body extracted to a control TapGesture;data from sqlite db; both LVDynamicDataPage and CVDynamicDataPage to to the same vm, detail page, pull same data",
+                ItemDesc = "CV, data from Sqlite; SearchBar; Main => Detail, DataTemplate points to a view both LVSqlitePage and CVSqlitePage to to the same vm, detail page, pull same data",
             });
 
             source.Add(new ListItem
             {
-                ItemName = "LVSqliteMain",
+                ItemName = "LV/Sqlite: Member",
                 ItemPage = "LVSqlitePage",
-                ItemDesc = "LV; SearchBar;Obs Coll; Main => Detail,body extracted to a control TapGesture;data from sqlite db; both LVDynamicDataPage and CVDynamicDataPage to to the same vm, detail page, pull same data",
+                ItemDesc = "LV, data from Sqlite; SearchBar; Main => Detail, Community Toolkit for gestureDataTemplate points to a view both LVSqlitePage and CVSqlitePage to to the same vm, detail page, pull same data",
             });
            
             source.Add(new ListItem
@@ -76,17 +76,11 @@ namespace DataAccessSamples.ViewModels
 
             source.Add(new ListItem
             {
-                ItemName = "CV/Static2",
+                ItemName = "CV/Static2: Student",
                 ItemPage = "StaticObjectsInJsonFilePage",
                 ItemDesc = "CV;Search, Obs Collection; Main -> Detail, TapGestureRecog,data from external json file",
             });
 
-            source.Add(new ListItem
-            {
-                ItemName = "CV/Dynamic: Member",
-                ItemPage = "DynamicDataFromSqliteDbPage",
-                ItemDesc = "CV; Obs Coll; Main -> Detail, Tap;  dadta from Sqlite DB",
-            });
             source.Add(new ListItem
             {
                 ItemName = "LV/StaticA: This List",

@@ -43,13 +43,11 @@
                                                   FontSize="Small"
                                                   FontAttributes="Bold"/>
                                             <Span Text="{Binding ItemName}"
-                                                 FontSize="Small"/>        
-                                                       
+                                                 FontSize="Small"/>                 
                                         </FormattedString>
                                     </Label.FormattedText>
-
                                 </Label>
-                                <Label>
+                                <Label Margin="0,0,0,5">
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="Page Name: "
