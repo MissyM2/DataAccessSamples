@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:DataAccessSamples.Models"
+             xmlns:viewmodels="clr-namespace:DataAccessSamples.ViewModels"
+             xmlns:controls="clr-namespace:DataAccessSamples.Controls"
+             x:Class="DataAccessSamples.Views.CVSqlitePage"
+             x:DataType="viewmodels:SqliteMainPageVM"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="True"
+             Title="CVSqlitePage">
+    <ContentPage.Resources>
+         <ResourceDictionary>
+            <DataTemplate x:Key="ItemDataTemplate"
+                          x:DataType="models:MemberModel">
+                    <controls:MemberModelView />
+            </DataTemplate>
+         </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="50,*">
+        <SearchBar x:Name="searchBar"
+                   Grid.Row="0"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="CenterAndExpand"
+                   Placeholder="Search cases..."
+                   TextChanged="searchBar_TextChanged"
+                   BackgroundColor="White"
+                   SearchCommand="{Binding PerformSearchCommand}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+
+        <CollectionView x:Name="CV"
+                        Grid.Row="1"
+                        ItemsSource="{Binding SearchResults}"
+                        SelectionMode="Single"
+                        VerticalOptions="FillAndExpand"
+                        SelectionChangedCommand="{Binding GoToDetailsCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference CV}}"
+                        ItemTemplate="{StaticResource ItemDataTemplate}"/>
+    </Grid>
+</ContentPage>

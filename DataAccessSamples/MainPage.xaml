@@ -25,7 +25,7 @@
 
         <ListView x:Name="listView"
                   ItemsSource="{Binding ListItems}"
-                  RowHeight="85">
+                  RowHeight="120">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="models:ListItem">
                     <ViewCell>
@@ -67,10 +67,10 @@
                                     <Label.FormattedText>
                                         <FormattedString>
                                             <Span Text="Desc: "
-                                                  FontSize="Caption"
+                                                  FontSize="Micro"
                                                   FontAttributes="Bold"/>
                                             <Span Text="{Binding ItemDesc}"
-                                                 FontSize="Caption"/>        
+                                                 FontSize="Micro"/>        
                                                        
                                         </FormattedString>
                                     </Label.FormattedText>

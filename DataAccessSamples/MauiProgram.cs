@@ -1,4 +1,5 @@
-﻿using DataAccessSamples.Data;
+﻿using CommunityToolkit.Maui;
+using DataAccessSamples.Data;
 
 namespace DataAccessSamples;
 
@@ -9,6 +10,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+            .UseMauiCommunityToolkit()
             .RegisterAppServices()
             .RegisterViewsAndViewModels()
             .ConfigureFonts(fonts =>
@@ -26,7 +28,7 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddSingleton<IDialogService, DialogService>();
         mauiAppBuilder.Services.AddSingleton<StudentCaseService>();
-        mauiAppBuilder.Services.AddSingleton<IMemberService, MemberService>();
+        mauiAppBuilder.Services.AddSingleton<ISqliteService, SqliteService>();
 
         return mauiAppBuilder;
     }
@@ -35,7 +37,7 @@ public static class MauiProgram
     {
         // PAGES AND VIEW MODELS
         mauiAppBuilder.Services.AddSingleton<MainPage>();
-        mauiAppBuilder.Services.AddSingleton<MainPageViewModel>();
+        mauiAppBuilder.Services.AddSingleton<MainPageVM>();
 
         mauiAppBuilder.Services.AddSingleton<ArrayOfStringsInXamlPage>();
 
@@ -56,11 +58,12 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<StaticObjectsInJsonFileDetailPage>();
         mauiAppBuilder.Services.AddSingleton<StaticObjectsInJsonFileDetailPageVM>();
 
-        mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbPage>();
-        mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbPageVM>();
+        mauiAppBuilder.Services.AddSingleton<CVSqlitePage>();
+        mauiAppBuilder.Services.AddSingleton<LVSqlitePage>();
+        mauiAppBuilder.Services.AddSingleton<SqliteMainPageVM>();
 
-        mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbDetailPage>();
-        mauiAppBuilder.Services.AddSingleton<DynamicDataFromSqliteDbDetailPageVM>();
+        mauiAppBuilder.Services.AddSingleton<DynamicDataDetailPage>();
+        mauiAppBuilder.Services.AddSingleton<DynamicDataDetailVM>();
 
 
         return mauiAppBuilder;

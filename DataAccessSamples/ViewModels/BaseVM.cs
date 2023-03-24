@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace DataAccessSamples.ViewModels
 {
-    public partial class BaseViewModel : ObservableObject
+    public partial class BaseVM : ObservableObject
     {
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(IsNotBusy))]

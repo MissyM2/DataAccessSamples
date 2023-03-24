@@ -3,7 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace DataAccessSamples.ViewModels
 {
-	public partial class StaticObjectsInSeparateFilePageVM : BaseViewModel
+	public partial class StaticObjectsInSeparateFilePageVM : BaseVM
 	{
 		public StaticObjectsInSeparateFilePageVM()
 		{

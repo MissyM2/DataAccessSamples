@@ -2,32 +2,34 @@
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+
 
 namespace DataAccessSamples.ViewModels
 {
-    public partial class DynamicDataFromSqliteDbPageVM : BaseViewModel
-    {
+	public partial class DynamicDataVM : BaseVM
+	{
+        ISqliteService sqliteService;
+        private IDialogService dialogService;
+
         public ObservableCollection<MemberModel> SourceItems { get; set; } = new();
         public ObservableCollection<MemberModel> SearchResults { get; set; } = new();
 
-        IMemberService memberService;
+        [ObservableProperty]
+        string selectedListItem;
 
-        public DynamicDataFromSqliteDbPageVM(IMemberService memberService)
+        public DynamicDataVM(SqliteService sqliteService, IDialogService dialogService)
         {
-            this.memberService = memberService;
+            this.sqliteService = sqliteService;
+            this.dialogService = dialogService;
         }
 
         public async Task InitializeAsync()
         {
-            await GetAllMembersList();
+            await GetAll();
         }
 
-
-
         [RelayCommand]
-        async Task GetAllMembersList()
+        async Task GetAll()
         {
             if (IsBusy)
                 return;
@@ -35,7 +37,7 @@ namespace DataAccessSamples.ViewModels
             try
             {
                 IsBusy = true;
-                var memberList = await memberService.GetMemberList();
+                var itemList = await sqliteService.GetListAsync();
 
                 if (SourceItems.Count != 0)
                     SourceItems.Clear();
@@ -43,11 +45,12 @@ namespace DataAccessSamples.ViewModels
                 if (SearchResults.Count != 0)
                     SearchResults.Clear();
 
-                foreach (var member in memberList)
+                foreach (var item in itemList)
                 {
-                    SourceItems.Add(member);
-                    SearchResults.Add(member);
+                    SourceItems.Add(item);
+                    SearchResults.Add(item);
                 }
+
             }
             catch (Exception ex)
             {
@@ -62,7 +65,19 @@ namespace DataAccessSamples.ViewModels
         }
 
         [RelayCommand]
-        public async Task PerformSearch(string searchTerm)
+        async Task GoToDetails(MemberModel memberModel)
+        {
+            if (memberModel == null)
+                return;
+
+            await Shell.Current.GoToAsync(nameof(DynamicDataDetailPage), true, new Dictionary<string, object>
+            {
+                {"MemberModel", memberModel }
+            });
+        }
+
+        [RelayCommand]
+        public void PerformSearch(string searchTerm)
         {
 
             if (string.IsNullOrWhiteSpace(searchTerm))
@@ -84,22 +99,7 @@ namespace DataAccessSamples.ViewModels
                     SearchResults.Add(value);
                 }
             }
-
-
         }
-
-        [RelayCommand]
-        async Task GoToDetails(MemberModel memberModel)
-        {
-            if (memberModel == null) return;
-
-            await Shell.Current.GoToAsync(nameof(DynamicDataFromSqliteDbDetailPage), true, new Dictionary<string, object>
-                {
-                    {"MemberModel", memberModel}
-                });
-        }
-
-
 
         //[RelayCommand]
         //async Task SaveMember()
@@ -120,13 +120,13 @@ namespace DataAccessSamples.ViewModels
         //    if (Id != 0)
         //    {
         //        member.Id = Id;
-        //        App.MemberService.UpdateMember(member);
-        //        await Shell.Current.DisplayAlert("Info", App.MemberService.StatusMessage, "Ok");
+        //        App.SqliteService.UpdateMember(member);
+        //        await Shell.Current.DisplayAlert("Info", App.SqliteService.StatusMessage, "Ok");
         //    }
         //    else
         //    {
-        //        App.MemberService.AddMember(member);
-        //        await Shell.Current.DisplayAlert("Info", App.MemberService.StatusMessage, "Ok");
+        //        App.SqliteService.AddMember(member);
+        //        await Shell.Current.DisplayAlert("Info", App.SqliteService.StatusMessage, "Ok");
         //    }
 
         //  await GetMemberList();
@@ -137,7 +137,7 @@ namespace DataAccessSamples.ViewModels
         //public async void DeleteMember(MemberModel memberModel)
         //{
 
-        //    var result = App.MemberService.DeleteMember(memberModel);
+        //    var result = App.SqliteService.DeleteMember(memberModel);
 
         //    if (result > 0)
         //    { 
@@ -157,7 +157,7 @@ namespace DataAccessSamples.ViewModels
         //{
         //    AddEditButtonText = editButtonText;
         //    Id = id;
-        //    var member = App.MemberService.GetMember(id);
+        //    var member = App.SqliteService.GetMember(id);
         //    FirstName = member.FirstName;
         //    LastName = member.LastName;
         //    Email = member.Email;
@@ -172,6 +172,8 @@ namespace DataAccessSamples.ViewModels
         //    LastName = string.Empty;
         //    Email = string.Empty;
         //}
+
+
 
 
     }

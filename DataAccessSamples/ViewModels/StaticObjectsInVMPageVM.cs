@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace DataAccessSamples.ViewModels
 {
-    public class StaticObjectsInVMPageVM : BaseViewModel
+    public class StaticObjectsInVMPageVM : BaseVM
     {
         readonly IList<Monkey> source;
         Monkey selectedMonkey;

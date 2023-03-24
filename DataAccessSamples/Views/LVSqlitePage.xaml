@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:models="clr-namespace:DataAccessSamples.Models"
+             xmlns:viewmodels="clr-namespace:DataAccessSamples.ViewModels"
+             xmlns:controls="clr-namespace:DataAccessSamples.Controls"
+             x:Class="DataAccessSamples.Views.LVSqlitePage"
+             x:DataType="viewmodels:SqliteMainPageVM"
+             xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+             ios:Page.UseSafeArea="True"
+             Title="LVSqlitePage">
+   <ContentPage.Resources>
+         <ResourceDictionary>
+            <toolkit:SelectedItemEventArgsConverter x:Key="ItemSelectedEventArgsConverter"/>
+            <DataTemplate x:Key="ItemDataTemplate"
+                            x:DataType="models:MemberModel">
+                <ViewCell>
+                    <controls:MemberModelView />
+                </ViewCell>
+            </DataTemplate>
+         </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="50, *">
+        <SearchBar x:Name="searchBar"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="CenterAndExpand"
+                   Placeholder="Search for case..."
+                   BackgroundColor="White"
+                   TextChanged="searchBar_TextChanged"
+                   SearchCommand="{Binding PerformSearchCommand}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+        
+        <ListView ItemsSource="{Binding SearchResults}"
+                  Grid.Row="1"
+                  VerticalOptions="FillAndExpand"
+                  SelectedItem="{Binding SelectedListItem, Mode=TwoWay}"
+                  RowHeight="100"
+                  ItemTemplate="{StaticResource ItemDataTemplate}">
+            <ListView.Behaviors>
+                <toolkit:EventToCommandBehavior
+                    Command="{Binding GoToDetailsCommand}"
+                    EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
+                    EventName="ItemSelected" />
+            </ListView.Behaviors>
+        </ListView>
+    </Grid>
+</ContentPage>

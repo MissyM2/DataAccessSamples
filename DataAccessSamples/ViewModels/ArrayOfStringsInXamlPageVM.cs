@@ -1,7 +1,7 @@
 ﻿using System;
 namespace DataAccessSamples.ViewModels
 {
-	public class ArrayOfStringsInXamlPageVM : BaseViewModel
+	public class ArrayOfStringsInXamlPageVM : BaseVM
 	{
 		public ArrayOfStringsInXamlPageVM()
 		{

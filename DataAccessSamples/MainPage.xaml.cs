@@ -3,7 +3,7 @@
 public partial class MainPage : ContentPage
 {
 
-	public MainPage(MainPageViewModel vm)
+	public MainPage(MainPageVM vm)
 	{
 		InitializeComponent();
 		BindingContext = vm;

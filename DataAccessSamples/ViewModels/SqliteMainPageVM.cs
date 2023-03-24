@@ -1,31 +1,33 @@
 ﻿using System;
-using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 
 namespace DataAccessSamples.ViewModels
 {
-    public partial class StaticObjectsInJsonFilePageVM : BaseVM
-    {
-        public ObservableCollection<StudentCase> SourceItems { get; set; } = new();
-        public ObservableCollection<StudentCase> SearchResults { get; set; } = new();
+	public partial class SqliteMainPageVM : BaseVM
+	{
+        ISqliteService sqliteService;
+
+        public ObservableCollection<MemberModel> SourceItems { get; set; } = new();
+        public ObservableCollection<MemberModel> SearchResults { get; set; } = new();
+
+        [ObservableProperty]
+        string selectedListItem;
 
 
-        StudentCaseService studentCaseService;
-
-        public StaticObjectsInJsonFilePageVM(StudentCaseService studentCaseService)
-        {
-            //title = "Student Case Finder";
-            this.studentCaseService = studentCaseService;
-        }
+        public SqliteMainPageVM(ISqliteService sqliteService)
+		{
+			this.sqliteService = sqliteService;
+			
+		}
 
         public async Task InitializeAsync()
         {
-            await GetAllStudentCases();
+            await GetAll();
         }
 
         [RelayCommand]
-        async Task GetAllStudentCases()
+        async Task GetAll()
         {
             if (IsBusy)
                 return;
@@ -33,7 +35,7 @@ namespace DataAccessSamples.ViewModels
             try
             {
                 IsBusy = true;
-                var studentCases = await studentCaseService.GetStudentCases();
+                var itemList = await sqliteService.GetListAsync();
 
                 if (SourceItems.Count != 0)
                     SourceItems.Clear();
@@ -41,10 +43,10 @@ namespace DataAccessSamples.ViewModels
                 if (SearchResults.Count != 0)
                     SearchResults.Clear();
 
-                foreach (var studentCase in studentCases)
+                foreach (var item in itemList)
                 {
-                    SourceItems.Add(studentCase);
-                    SearchResults.Add(studentCase);
+                    SourceItems.Add(item);
+                    SearchResults.Add(item);
                 }
 
             }
@@ -61,14 +63,14 @@ namespace DataAccessSamples.ViewModels
         }
 
         [RelayCommand]
-        async Task GoToDetails(StudentCase studentCase)
+        async Task GoToDetails(MemberModel memberModel)
         {
-            if (studentCase == null)
+            if (memberModel == null)
                 return;
 
-            await Shell.Current.GoToAsync(nameof(StaticObjectsInJsonFileDetailPage), true, new Dictionary<string, object>
+            await Shell.Current.GoToAsync(nameof(DynamicDataDetailPage), true, new Dictionary<string, object>
             {
-                {"StudentCase", studentCase }
+                {"MemberModel", memberModel }
             });
         }
 
@@ -82,7 +84,7 @@ namespace DataAccessSamples.ViewModels
             }
 
             searchTerm = searchTerm.ToLower();
-            var filteredItems = SourceItems.Where(value => value.StudentName.ToLower().Contains(searchTerm)).ToList();
+            var filteredItems = SourceItems.Where(value => value.LastName.ToLower().Contains(searchTerm)).ToList();
 
             foreach (var value in SourceItems)
             {
@@ -95,11 +97,7 @@ namespace DataAccessSamples.ViewModels
                     SearchResults.Add(value);
                 }
             }
-
-
         }
     }
-
-        
 }
 

@@ -20,13 +20,13 @@ public partial class StaticObjectsInJsonFilePage : ContentPage
 			
 	}
 
-    async void searchBar_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
+    void searchBar_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
     {
         if (e.NewTextValue == "")
         {
             if (BindingContext is StaticObjectsInJsonFilePageVM vm)
             {
-                await vm.PerformSearch("");
+                vm.PerformSearch("");
             }
         }
     }

@@ -16,6 +16,13 @@ namespace DataAccessSamples.Models
             public string State { get; set; }
             public string Zip { get; set; }
             public bool Subscribed { get; set; }
+            public string HairColor { get; set; }
+            public string Height { get; set; }
+            public string FavoriteColor { get; set; }
+            public string FavoriteHobby { get; set; }
+            public string MothersName { get; set; }
+            public string FathersName { get; set; }
+
     }
 }
 

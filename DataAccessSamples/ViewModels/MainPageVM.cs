@@ -8,7 +8,7 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace DataAccessSamples.ViewModels
 {
-	public partial class MainPageViewModel : BaseViewModel
+	public partial class MainPageVM : BaseVM
     {
 
         private IDialogService dialogService;
@@ -22,7 +22,7 @@ namespace DataAccessSamples.ViewModels
         string selectedListItem;
 
 
-        public MainPageViewModel(IDialogService dialogService)
+        public MainPageVM(IDialogService dialogService)
         {
             this.dialogService = dialogService;
 
@@ -53,6 +53,40 @@ namespace DataAccessSamples.ViewModels
 
         void CreateListItemCollection()
         {
+            source.Add(new ListItem
+            {
+                ItemName = "CVSqliteMain",
+                ItemPage = "CVSqlitePage",
+                ItemDesc = "LV; SearchBar;Obs Coll; Main => Detail,body extracted to a control TapGesture;data from sqlite db; both LVDynamicDataPage and CVDynamicDataPage to to the same vm, detail page, pull same data",
+            });
+
+            source.Add(new ListItem
+            {
+                ItemName = "LVSqliteMain",
+                ItemPage = "LVSqlitePage",
+                ItemDesc = "LV; SearchBar;Obs Coll; Main => Detail,body extracted to a control TapGesture;data from sqlite db; both LVDynamicDataPage and CVDynamicDataPage to to the same vm, detail page, pull same data",
+            });
+           
+            source.Add(new ListItem
+            {
+                ItemName = "CV/Static1",
+                ItemPage = "StaticObjectsInSeparateFilePage",
+                ItemDesc = "Collection of objects coming from a separate class; data coming from separate file",
+            });
+
+            source.Add(new ListItem
+            {
+                ItemName = "CV/Static2",
+                ItemPage = "StaticObjectsInJsonFilePage",
+                ItemDesc = "CV;Search, Obs Collection; Main -> Detail, TapGestureRecog,data from external json file",
+            });
+
+            source.Add(new ListItem
+            {
+                ItemName = "CV/Dynamic: Member",
+                ItemPage = "DynamicDataFromSqliteDbPage",
+                ItemDesc = "CV; Obs Coll; Main -> Detail, Tap;  dadta from Sqlite DB",
+            });
             source.Add(new ListItem
             {
                 ItemName = "LV/StaticA: This List",
@@ -87,26 +121,7 @@ namespace DataAccessSamples.ViewModels
                 ItemDesc = "ObservableCollection of objects coming from VM; with separate class",
             });
 
-            source.Add(new ListItem
-            {
-                ItemName = "CV/Static1",
-                ItemPage = "StaticObjectsInSeparateFilePage",
-                ItemDesc = "Collection of objects coming from a separate class; data coming from separate file",
-            });
-
-            source.Add(new ListItem
-            {
-                ItemName = "CV/Static2",
-                ItemPage = "StaticObjectsInJsonFilePage",
-                ItemDesc = "CV;Search, Obs Collection; Main -> Detail, TapGestureRecog,data from external json file",
-            });
-
-            source.Add(new ListItem
-            {
-                ItemName = "CV/Dynamic: Member",
-                ItemPage = "DynamicDataFromSqliteDbPage",
-                ItemDesc = "CV; Obs Coll; Main -> Detail, Tap;  dadta from Sqlite DB",
-            });
+            
 
             ListItems = new ObservableCollection<ListItem>(source);
         }
