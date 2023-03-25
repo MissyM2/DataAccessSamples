@@ -1,77 +1,77 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="DataAccessSamples.Controls.MemberModelView">
+             x:Class="DataAccessSamples.Controls.MemberBriefView">
      <Frame HasShadow="false"
         Padding="0,0,0,0"
         CornerRadius="0"
         BorderColor="Transparent">
                             
-        <Grid RowDefinitions="*,2"
+        <Grid RowDefinitions="*,auto,2"
             ColumnDefinitions="20, *"
-            Padding="0">
-                <StackLayout Grid.Row="0" Grid.RowSpan="2"
-                                Grid.Column="0"
-                                BackgroundColor="Orange"
-                                Margin="0,0,10,0">
-                </StackLayout>
-                <StackLayout Grid.Row="0" Grid.Column="1"
-                             VerticalOptions="Center">
+            Padding="5">
+            <StackLayout Grid.Row="0" Grid.RowSpan="2"
+                            Grid.Column="0"
+                            BackgroundColor="Orange"
+                            Margin="0,0,10,0">
+            </StackLayout>
+            <StackLayout Grid.Row="0" Grid.Column="1"
+                            VerticalOptions="Center">
 
-                    <Grid ColumnDefinitions="*"
-                          RowDefinitions="Auto,Auto,Auto,Auto, 2"
-                          Padding="0">
-                        <Label>
-                            <Label.FormattedText>
-                                    <FormattedString>
-                                            <Span Text="Subscribed:  " FontSize="Small"/>
-                                            <Span Text="{Binding Subscribed}" FontSize="Small"/>
-                                     </FormattedString>
-                                </Label.FormattedText>
-                        </Label>
-                        
-                        <Label Grid.Row="2"
-                                    FontSize="Small"
-                                    Margin="0,0,0,5">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding LastName}" FontSize="Small"/>
-                                        <Span Text=", " FontSize="Small"/>
-                                        <Span Text="{Binding FirstName}" FontSize="Small"/>
-                                     </FormattedString>
-                                </Label.FormattedText>
-
-                            </Label>
-                        <Label Grid.Row="3"
-                                   Margin="0,0,0,5">
-                                <Label.FormattedText>
-                                    <FormattedString>
-                                        <Span Text="{Binding Address1}"
-                                    FontSize="Small"/>
-                                        <Span Text="{Binding Address2}"
-                                    FontSize="Small"/>
-                                        <Span Text=", "
-                                    FontSize="Small"/>
-                                        <Span Text="{Binding City}"
-                                    FontSize="Small"/>
-                                        <Span Text=", " />
-                                        <Span Text="{Binding State}"
-                                    FontSize="Small"/>
-                                        <Span Text="  "
-                                    FontSize="Small"/>
-                                        <Span Text="{Binding Zip}"
-                                    FontSize="Small"/>
+                <Grid ColumnDefinitions="*"
+                        RowDefinitions="Auto,Auto,Auto,Auto, 2"
+                        Padding="0">
+                    <Label>
+                        <Label.FormattedText>
+                                <FormattedString>
+                                        <Span Text="Subscribed:  " FontSize="Small"/>
+                                        <Span Text="{Binding Subscribed}" FontSize="Small"/>
                                     </FormattedString>
-                                </Label.FormattedText>
-                            </Label>
+                            </Label.FormattedText>
+                    </Label>
+                        
+                    <Label Grid.Row="2"
+                                FontSize="Small"
+                                Margin="0,0,0,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding LastName}" FontSize="Small"/>
+                                    <Span Text=", " FontSize="Small"/>
+                                    <Span Text="{Binding FirstName}" FontSize="Small"/>
+                                    </FormattedString>
+                            </Label.FormattedText>
+
+                        </Label>
+                    <Label Grid.Row="3"
+                                Margin="0,0,0,5">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="{Binding Address1}"
+                                FontSize="Small"/>
+                                    <Span Text="{Binding Address2}"
+                                FontSize="Small"/>
+                                    <Span Text=", "
+                                FontSize="Small"/>
+                                    <Span Text="{Binding City}"
+                                FontSize="Small"/>
+                                    <Span Text=", " />
+                                    <Span Text="{Binding State}"
+                                FontSize="Small"/>
+                                    <Span Text="  "
+                                FontSize="Small"/>
+                                    <Span Text="{Binding Zip}"
+                                FontSize="Small"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
                        
-                    </Grid>
-                
-           </StackLayout>
-                <BoxView Grid.Row="1" Grid.Column="0"
-                            Grid.ColumnSpan="2"
-                            Color="LightGray"
-                            HeightRequest="2"/>
+                </Grid>
+            </StackLayout>
+            
+            <BoxView Grid.Row="1" Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Color="LightGray"
+                        HeightRequest="2"/>
         </Grid>
     </Frame>
 </ContentView>

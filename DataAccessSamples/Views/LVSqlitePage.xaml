@@ -16,34 +16,64 @@
             <DataTemplate x:Key="ItemDataTemplate"
                             x:DataType="models:MemberModel">
                 <ViewCell>
-                    <controls:MemberModelView />
+                    <controls:MemberBriefView />
                 </ViewCell>
             </DataTemplate>
          </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="50, *">
+    <Grid RowDefinitions="50, *, 75">
         <SearchBar x:Name="searchBar"
                    HorizontalOptions="Fill"
                    VerticalOptions="CenterAndExpand"
                    Placeholder="Search for case..."
-                   BackgroundColor="White"
+                   Background="White"
                    TextChanged="searchBar_TextChanged"
                    SearchCommand="{Binding PerformSearchCommand}"
                    SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+
         
         <ListView ItemsSource="{Binding SearchResults}"
                   Grid.Row="1"
                   VerticalOptions="FillAndExpand"
-                  SelectedItem="{Binding SelectedListItem, Mode=TwoWay}"
+                  SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                   RowHeight="100"
-                  ItemTemplate="{StaticResource ItemDataTemplate}">
+                  IsPullToRefreshEnabled="True"
+                  IsRefreshing="{Binding IsRefreshing}"
+                  RefreshControlColor="BlueViolet">
             <ListView.Behaviors>
                 <toolkit:EventToCommandBehavior
                     Command="{Binding GoToDetailsCommand}"
                     EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
                     EventName="ItemSelected" />
             </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                        <controls:MemberBriefView />
+                        <Button Text="Delete"
+                                FontSize="Micro"
+                                WidthRequest="60"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:SqliteMainPageVM}}, Path=DeleteMemberCommand}"
+                                CommandParameter="{Binding .}"/>
+                        </StackLayout>
+                    </ViewCell>
+
+                </DataTemplate>
+
+            </ListView.ItemTemplate>
         </ListView>
+         <Button Grid.Row="2"
+                 Text="+"
+                 FontSize="75"
+                 WidthRequest="120"
+                 CornerRadius="25"
+                 HorizontalOptions="End"
+                 IsEnabled="{Binding IsNotLoading}"
+                 Command="{Binding AddUpdateMemberCommand}"
+                 Margin="9"
+                 Background="LightGray"
+                 TextColor="Black" />
     </Grid>
 </ContentPage>

@@ -29,4 +29,19 @@ public partial class LVSqlitePage : ContentPage
 
         }
     }
+
+    void OnMore_Clicked(System.Object sender, System.EventArgs e)
+    {
+        var mi = ((MenuItem)sender);
+        DisplayAlert("More Context Action", mi.CommandParameter + " more context action", "OK");
+    }
+
+    void OnDelete_Clicked_1(System.Object sender, System.EventArgs e)
+    {
+        var mi = ((MenuItem)sender);
+        DisplayAlert("Delete Context Action", mi.CommandParameter + " delete context action", "OK");
+
+        //Debug.WriteLine("delete " + mi.CommandParameter.ToString());
+        //items.Remove(mi.CommandParameter.ToString());
+    }
 }

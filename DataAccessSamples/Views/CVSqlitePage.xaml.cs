@@ -29,4 +29,8 @@ public partial class CVSqlitePage : ContentPage
 
         }
     }
+
+    void CV_RemainingItemsThresholdReached(System.Object sender, System.EventArgs e)
+    {
+    }
 }

@@ -1,12 +1,24 @@
-﻿using System;
-namespace DataAccessSamples.Services
+﻿namespace DataAccessSamples.Services
 {
     public interface ISqliteService
     {
+        void CheckDatabase();
+
+        void GetDbConnection();
+
+        Task CreateDatabase();
+
         Task<List<MemberModel>> GetListAsync();
-        Task<int> Add(MemberModel memberModel);
-        Task<int> Delete(MemberModel memberModel);
-        Task<int> Update(MemberModel memberModel);
+
+
+        //Task<MemberModel> GetMember(int id)
+
+        Task<int> AddItem(MemberModel memberModel);
+
+
+        Task<int> DeleteItem(MemberModel memberModel);
+
+        Task<int> UpdateItem(MemberModel memberModel);
+     
     }
 }
-

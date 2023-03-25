@@ -1,8 +1,8 @@
 ﻿namespace DataAccessSamples.Controls;
 
-public partial class MemberModelView : ContentView
+public partial class MemberBriefView : ContentView
 {
-	public MemberModelView()
+	public MemberBriefView()
 	{
 		InitializeComponent();
 	}

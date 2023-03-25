@@ -10,27 +10,47 @@ namespace DataAccessSamples.Services
 
         List<MemberModel> memberModel;
 
-        public SqliteService()
+        public string StatusMessage;
+
+        int result = 0;
+
+        public async void CheckDatabase()
         {
             if (File.Exists(Constants.DatabasePath))
-                Console.WriteLine("Database exists");
+                Console.WriteLine("Database exists" + Constants.DatabasePath);
             else
-                CreateDatabase();
+                Console.WriteLine("Database does not exist.  Creating db at " + Constants.DatabasePath);
+            await CreateDatabase();
         }
 
-        void Init()
-        {
-            if (_dbConnection == null)
-                _dbConnection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-        }
-
-        async void CreateDatabase()
+        public void GetDbConnection()
         {
             _dbConnection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-            var result = await _dbConnection.CreateTableAsync<MemberModel>();
-
-            AddTestData();
         }
+
+        public async Task CreateDatabase()
+        {
+            if (_dbConnection == null)
+            {
+                _dbConnection = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
+
+                try
+                {
+                    await _dbConnection.CreateTableAsync<MemberModel>();
+
+                    var rowCount = await _dbConnection.Table<MemberModel>().CountAsync();
+                    if (rowCount == 0)
+                    {
+                        AddTestData();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("CreateDatabase " + ex.Message.ToString());
+                }
+            }   
+        }
+
 
         void AddTestData()
         {
@@ -252,7 +272,7 @@ namespace DataAccessSamples.Services
 
         public async Task<List<MemberModel>> GetListAsync()
         {
-            Init();
+            GetDbConnection();
             return await _dbConnection.Table<MemberModel>().ToListAsync();
         }
 
@@ -271,22 +291,26 @@ namespace DataAccessSamples.Services
         //    return null;
         //}
 
-        public async Task<int> Add(MemberModel memberModel)
+        public async Task<int> AddItem(MemberModel memberModel)
         {
-            Init();
-            return await _dbConnection.InsertAsync(memberModel);
 
+            GetDbConnection();
+
+            if (memberModel == null)
+                throw new Exception("Invalid Member record");
+
+            return await _dbConnection.InsertAsync(memberModel);
         }
 
-        public async Task<int> Delete(MemberModel memberModel)
+        public async Task<int> DeleteItem(MemberModel memberModel)
         {
-            Init();
+            GetDbConnection();
             return await _dbConnection.DeleteAsync(memberModel);
         }
 
-        public async Task<int> Update(MemberModel memberModel)
+        public async Task<int> UpdateItem(MemberModel memberModel)
         {
-            Init();
+            GetDbConnection();
             return await _dbConnection.UpdateAsync(memberModel);
         }
     }

@@ -13,29 +13,39 @@
          <ResourceDictionary>
             <DataTemplate x:Key="ItemDataTemplate"
                           x:DataType="models:MemberModel">
-                    <controls:MemberModelView />
+                    <controls:MemberBriefView />
             </DataTemplate>
          </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="50,*">
-        <SearchBar x:Name="searchBar"
-                   Grid.Row="0"
-                   HorizontalOptions="Fill"
-                   VerticalOptions="CenterAndExpand"
-                   Placeholder="Search cases..."
-                   TextChanged="searchBar_TextChanged"
-                   BackgroundColor="White"
-                   SearchCommand="{Binding PerformSearchCommand}"
-                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+     <Grid ColumnDefinitions="*"
+           RowDefinitions="50,50,*">
+             <SearchBar x:Name="searchBar"
+                       HorizontalOptions="Fill"
+                       VerticalOptions="CenterAndExpand"
+                       Placeholder="Search cases..."
+                       Background="White"
+                       TextChanged="searchBar_TextChanged"
+                       SearchCommand="{Binding PerformSearchCommand}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+         <StackLayout Grid.Row="1">
+               <Button Text="{Binding AddEditButtonText}"
+                       IsEnabled="{Binding IsNotLoading}"
+                       Command="{Binding AddUpdateMemberCommand}"
+                       Margin="9"
+                       Background="Pink"/>
+        </StackLayout>
+             <RefreshView Grid.Row="2"
+                          Command="{Binding GetAllCommand}"
+                         IsRefreshing="{Binding IsRefreshing}">
+                    <CollectionView x:Name="CV"
+                                    ItemsSource="{Binding SearchResults}"
+                                    SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                                    SelectionMode="None"
+                                    SelectionChangedCommand="{Binding GoToDetailsCommand}"
+                                    SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference CV}}"
+                                    ItemTemplate="{StaticResource ItemDataTemplate}"/>
 
-        <CollectionView x:Name="CV"
-                        Grid.Row="1"
-                        ItemsSource="{Binding SearchResults}"
-                        SelectionMode="Single"
-                        VerticalOptions="FillAndExpand"
-                        SelectionChangedCommand="{Binding GoToDetailsCommand}"
-                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference CV}}"
-                        ItemTemplate="{StaticResource ItemDataTemplate}"/>
-    </Grid>
+            </RefreshView>
+   </Grid>
 </ContentPage>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DataAccessSamples.Views.AddUpdateMemberDetailPage"
+             Title="AddUpdateMemberDetailPage">
+   <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="14" />
+                <Setter Property="TextColor" Value="SlateGray" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <StackLayout>
+        <ScrollView x:Name="scrollView"
+                    VerticalOptions="FillAndExpand"
+                    Scrolled="scrollView_Scrolled">
+            <StackLayout Margin="10" Spacing="15">
+                <VerticalStackLayout>
+                    <Label Text="First Name"  />
+                    <Entry Text="{Binding MemberDetail.FirstName}" Placeholder="First Name" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Last Name" />
+                    <Entry  Text="{Binding MemberDetail.LastName}" Placeholder="Last Name" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Email" />
+                    <Entry Text="{Binding MemberDetail.Email}" Placeholder="Email" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Address1"  />
+                    <Entry Text="{Binding MemberDetail.Address1}" Placeholder="Address1" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Address2" />
+                    <Entry  Text="{Binding MemberDetail.Address2}" Placeholder="Address2" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="City" />
+                    <Entry Text="{Binding MemberDetail.City}" Placeholder="City" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="State"  />
+                    <Entry Text="{Binding MemberDetail.State}" Placeholder="State" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Zip" />
+                    <Entry  Text="{Binding MemberDetail.Zip}" Placeholder="Zip" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="HairColor" />
+                    <Entry Text="{Binding MemberDetail.HairColor}" Placeholder="HairColor" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                 <VerticalStackLayout>
+                    <Label Text="Height" />
+                    <Entry  Text="{Binding MemberDetail.Height}" Placeholder="Height" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Favorite Color" />
+                    <Entry Text="{Binding MemberDetail.FavoriteColor}" Placeholder="Favorite Color" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Favorite Hobby"  />
+                    <Entry Text="{Binding MemberDetail.FavoriteHobby}" Placeholder="Favorite Hobby" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Mother's Name" />
+                    <Entry  Text="{Binding MemberDetail.MothersName}" Placeholder="Mother's Name" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <Label Text="Father's Name" />
+                    <Entry Text="{Binding MemberDetail.FathersName}" Placeholder="Father's Name" />
+                    <BoxView HeightRequest="0.8" Color="Gray" />
+                </VerticalStackLayout>
+               <Label x:Name="finalLabel" Text="" />
+            </StackLayout>
+        </ScrollView>
+        <Button Text="Scroll to end"
+                Clicked="Button_Clicked" />
+        <Button Text="Save" Command="{Binding AddUpdateMemberCommand}"/>
+    </StackLayout>
+</ContentPage>

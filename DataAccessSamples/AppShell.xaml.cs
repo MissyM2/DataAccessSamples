@@ -30,6 +30,8 @@ public partial class AppShell : Shell
         Routes.Add(nameof(LVSqlitePage), typeof(LVSqlitePage));
         Routes.Add(nameof(DynamicDataDetailPage), typeof(DynamicDataDetailPage));
 
+        Routes.Add(nameof(AddUpdateMemberDetailPage), typeof(AddUpdateMemberDetailPage));
+
         foreach (var item in Routes)
         {
             Routing.RegisterRoute(item.Key, item.Value);

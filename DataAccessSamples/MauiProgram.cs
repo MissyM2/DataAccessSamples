@@ -62,6 +62,11 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<LVSqlitePage>();
         mauiAppBuilder.Services.AddSingleton<SqliteMainPageVM>();
 
+        mauiAppBuilder.Services.AddSingleton<AddUpdateMemberDetailPage>();
+        mauiAppBuilder.Services.AddSingleton<AddUpdateMemberDetailVM>();
+
+
+
         mauiAppBuilder.Services.AddSingleton<DynamicDataDetailPage>();
         mauiAppBuilder.Services.AddSingleton<DynamicDataDetailVM>();
 
