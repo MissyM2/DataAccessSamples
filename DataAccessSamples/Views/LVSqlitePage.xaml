@@ -40,29 +40,14 @@
                   RowHeight="100"
                   IsPullToRefreshEnabled="True"
                   IsRefreshing="{Binding IsRefreshing}"
-                  RefreshControlColor="BlueViolet">
+                  RefreshControlColor="BlueViolet"
+                  ItemTemplate="{StaticResource ItemDataTemplate}">
             <ListView.Behaviors>
                 <toolkit:EventToCommandBehavior
                     Command="{Binding GoToDetailsCommand}"
                     EventArgsConverter="{StaticResource ItemSelectedEventArgsConverter}"
                     EventName="ItemSelected" />
             </ListView.Behaviors>
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <StackLayout>
-                        <controls:MemberBriefView />
-                        <Button Text="Delete"
-                                FontSize="Micro"
-                                WidthRequest="60"
-                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:SqliteMainPageVM}}, Path=DeleteMemberCommand}"
-                                CommandParameter="{Binding .}"/>
-                        </StackLayout>
-                    </ViewCell>
-
-                </DataTemplate>
-
-            </ListView.ItemTemplate>
         </ListView>
          <Button Grid.Row="2"
                  Text="+"
