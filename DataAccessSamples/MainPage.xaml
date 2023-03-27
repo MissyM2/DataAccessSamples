@@ -5,81 +5,79 @@
              x:Class="DataAccessSamples.MainPage"
              Title="LV/StaticA: This List">
 
-    <StackLayout Margin="10">
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <StackLayout Padding="0"
-                         HorizontalOptions="CenterAndExpand">
-                <Label Text="Data Access Examples"
-                    FontSize="Subtitle"
-                    HorizontalTextAlignment="Center"/>
-            </StackLayout>
-           
-        </Grid>
-
-        <ListView x:Name="listView"
-                  ItemsSource="{Binding ListItems}"
-                  RowHeight="120">
-            <ListView.ItemTemplate>
+    <Grid Margin="10"
+          RowDefinitions="60,*">
+        <StackLayout Padding="0"
+                     Grid.Row="0"
+                     HorizontalOptions="CenterAndExpand">
+            <Label Text="Data Access Examples"
+                FontSize="Subtitle"
+                HorizontalTextAlignment="Center"/>
+        </StackLayout>
+          
+        <CollectionView x:Name="mainPageCollectionView"
+                        Grid.Row="1"
+                        ItemsSource="{Binding ListItems}"
+                        ItemsLayout="VerticalGrid, 1"
+                        ItemSizingStrategy="MeasureAllItems"
+                        SelectionMode="Single"
+                        SelectedItem="{Binding SelectedListItem}"
+                        SelectionChangedCommand="{Binding ItemSelectedCommand}"
+                        SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference mainPageCollectionView}}">
+            <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="models:ListItem">
-                    <ViewCell>
-                        <StackLayout Padding="18, 10">
-                            <StackLayout.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path= BindingContext.ItemTappedCommand, Source={x:Reference listView}}" 
-                                                    CommandParameter="{Binding .}"  
-                                                    NumberOfTapsRequired="1"/>
-                            </StackLayout.GestureRecognizers>
-                                <Label HorizontalTextAlignment="Start"
-                                       Margin="0,0,0,5">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="Example Title: "
-                                                  FontSize="Small"
-                                                  FontAttributes="Bold"/>
-                                            <Span Text="{Binding ItemName}"
-                                                 FontSize="Small"/>                 
-                                        </FormattedString>
-                                    </Label.FormattedText>
-                                </Label>
-                                <Label Margin="0,0,0,5">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="Page Name: "
-                                                  FontSize="Caption"
-                                                  FontAttributes="Bold"/>
-                                            <Span Text="{Binding ItemPage}"
-                                                 FontSize="Caption"/>        
+                    <Grid Padding="10,0,10,10" RowDefinitions="*,10">
+                        <StackLayout>
+                            <Label HorizontalTextAlignment="Start"
+                                    Margin="0,0,0,5">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Example Title: "
+                                                FontSize="Small"
+                                                FontAttributes="Bold"/>
+                                        <Span Text="{Binding ItemName}"
+                                                FontSize="Small"/>                 
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label Margin="0,0,0,5">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Page Name: "
+                                                FontSize="Caption"
+                                                FontAttributes="Bold"/>
+                                        <Span Text="{Binding ItemPage}"
+                                                FontSize="Caption"/>        
                                                        
-                                        </FormattedString>
-                                    </Label.FormattedText>
-
-                                </Label>
-                                <Label LineBreakMode="WordWrap"
-                                       MaxLines="4">
-                                    <Label.FormattedText>
-                                        <FormattedString>
-                                            <Span Text="Desc: "
-                                                  FontSize="Micro"
-                                                  FontAttributes="Bold"/>
-                                            <Span Text="{Binding ItemDesc}"
-                                                 FontSize="Micro"/>        
-                                                       
-                                        </FormattedString>
-                                    </Label.FormattedText>
-
-                                </Label>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                            <Label LineBreakMode="WordWrap"
+                                    MaxLines="5"
+                                    Margin="0,0,0,10">
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Desc: "
+                                                FontSize="Micro"
+                                                FontAttributes="Bold"/>
+                                        <Span Text="{Binding ItemDesc}"
+                                                FontSize="Micro"/>        
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
                         </StackLayout>
-                    </ViewCell>
+                        <StackLayout Grid.Row="1" Padding="0,10,0,0">
+                            <BoxView Color="LightGray"
+                                     HeightRequest="2"
+                                     Margin="0"/>
+                        </StackLayout>  
+                    </Grid>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </StackLayout>
+               
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        
+    </Grid>
 
 </ContentPage>
 

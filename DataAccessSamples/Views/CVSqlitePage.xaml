@@ -18,34 +18,55 @@
          </ResourceDictionary>
     </ContentPage.Resources>
 
-     <Grid ColumnDefinitions="*"
-           RowDefinitions="50,50,*">
+     <Grid RowDefinitions="50,50,50, *, 75">
+         <HorizontalStackLayout>
+            <Label Text="SourceItems: " />
+            <Label Text="{Binding SourceItems.Count, StringFormat='Number of items: {0}'}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="1">
+            <Label Text="SearchResults:  " />
+            <Label Text="{Binding SearchResults.Count, StringFormat='Number of items: {0}'}" />
+        </HorizontalStackLayout>
              <SearchBar x:Name="searchBar"
-                       HorizontalOptions="Fill"
-                       VerticalOptions="CenterAndExpand"
-                       Placeholder="Search cases..."
-                       Background="White"
-                       TextChanged="searchBar_TextChanged"
-                       SearchCommand="{Binding PerformSearchCommand}"
-                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
-         <StackLayout Grid.Row="1">
-               <Button Text="{Binding AddEditButtonText}"
-                       IsEnabled="{Binding IsNotLoading}"
-                       Command="{Binding AddUpdateMemberCommand}"
-                       Margin="9"
-                       Background="Pink"/>
-        </StackLayout>
-             <RefreshView Grid.Row="2"
+                        Grid.Row="2"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="CenterAndExpand"
+                        Placeholder="Search cases..."
+                        Background="White"
+                        TextChanged="searchBar_TextChanged"
+                        SearchCommand="{Binding PerformSearchCommand}"
+                        SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+
+             <RefreshView Grid.Row="3"
                           Command="{Binding GetAllCommand}"
-                         IsRefreshing="{Binding IsRefreshing}">
+                          IsRefreshing="{Binding IsRefreshing}"
+                          RefreshColor="BlueViolet">
                     <CollectionView x:Name="CV"
                                     ItemsSource="{Binding SearchResults}"
+                                    ItemSizingStrategy="MeasureFirstItem"
                                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                                    SelectionMode="None"
+                                    SelectionMode="Single"
                                     SelectionChangedCommand="{Binding GoToDetailsCommand}"
                                     SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference CV}}"
-                                    ItemTemplate="{StaticResource ItemDataTemplate}"/>
+                                    ItemTemplate="{StaticResource ItemDataTemplate}">
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Vertical"
+                                               ItemSpacing="0"/>
+                        </CollectionView.ItemsLayout>
+
+                    </CollectionView>
 
             </RefreshView>
+         <Button Grid.Row="4"
+                 Text="+"
+                 FontSize="75"
+                 WidthRequest="120"
+                 CornerRadius="25"
+                 HorizontalOptions="End"
+                 IsEnabled="{Binding IsNotLoading}"
+                 Command="{Binding AddUpdateMemberCommand}"
+                 Margin="9"
+                 Background="LightGray"
+                 TextColor="Black" />
    </Grid>
 </ContentPage>

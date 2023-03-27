@@ -22,8 +22,17 @@
          </ResourceDictionary>
     </ContentPage.Resources>
 
-    <Grid RowDefinitions="50, *, 75">
+    <Grid RowDefinitions="50,50,50, *, 75">
+        <HorizontalStackLayout>
+            <Label Text="SourceItems: " />
+            <Label Text="{Binding SourceItems.Count, StringFormat='Number of items: {0}'}" />
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Grid.Row="1">
+            <Label Text="SearchResults:  " />
+            <Label Text="{Binding SearchResults.Count, StringFormat='Number of items: {0}'}" />
+        </HorizontalStackLayout>
         <SearchBar x:Name="searchBar"
+                   Grid.Row="2"
                    HorizontalOptions="Fill"
                    VerticalOptions="CenterAndExpand"
                    Placeholder="Search for case..."
@@ -34,11 +43,12 @@
 
         
         <ListView ItemsSource="{Binding SearchResults}"
-                  Grid.Row="1"
+                  Grid.Row="3"
+                  RowHeight="75"
                   VerticalOptions="FillAndExpand"
                   SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                  RowHeight="100"
                   IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding GetAllCommand}"
                   IsRefreshing="{Binding IsRefreshing}"
                   RefreshControlColor="BlueViolet"
                   ItemTemplate="{StaticResource ItemDataTemplate}">
@@ -49,7 +59,7 @@
                     EventName="ItemSelected" />
             </ListView.Behaviors>
         </ListView>
-         <Button Grid.Row="2"
+         <Button Grid.Row="4"
                  Text="+"
                  FontSize="75"
                  WidthRequest="120"

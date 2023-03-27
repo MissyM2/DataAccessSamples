@@ -51,9 +51,9 @@ namespace DataAccessSamples.ViewModels
 
         public async Task InitializeAsync()
         {
-            CollectionViewHeight = DeviceInfo.Current.Platform == DevicePlatform.iOS
-                 ? Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 150
-                 : Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 525;
+            //CollectionViewHeight = DeviceInfo.Current.Platform == DevicePlatform.iOS
+            //     ? Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 150
+            //     : Convert.ToInt32(DeviceDisplay.Current.MainDisplayInfo.Height / 2) - 525;
 
             await GetAll();
         }
@@ -73,6 +73,7 @@ namespace DataAccessSamples.ViewModels
             try
             {
                 IsBusy = true;
+                IsRefreshing = true;
                 var itemList = await sqliteService.GetListAsync();
 
                 if (SourceItems.Count != 0)
@@ -96,6 +97,7 @@ namespace DataAccessSamples.ViewModels
             finally
             {
                 IsBusy = false;
+                IsRefreshing = false;
             }
 
         }

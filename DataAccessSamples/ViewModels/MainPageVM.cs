@@ -19,7 +19,10 @@ namespace DataAccessSamples.ViewModels
         public ObservableCollection<ListItem> ListItems { get; private set; }
 
         [ObservableProperty]
-        string selectedListItem;
+        ListItem selectedListItem;
+
+        [ObservableProperty]
+        string selectedListItemPage;
 
 
         public MainPageVM(IDialogService dialogService)
@@ -33,7 +36,7 @@ namespace DataAccessSamples.ViewModels
         }
 
         [RelayCommand]
-        async Task ItemTapped(ListItem listItem)
+        async Task ItemSelected(ListItem listItem)
         {
             if (listItem == null)
             {
@@ -46,9 +49,9 @@ namespace DataAccessSamples.ViewModels
                 return;
             }
 
-            SelectedListItem = listItem.ItemPage;
+            SelectedListItemPage = listItem.ItemPage;
 
-            await Shell.Current.GoToAsync(SelectedListItem);
+            await Shell.Current.GoToAsync(SelectedListItemPage);
         }
 
         void CreateListItemCollection()
